@@ -12,39 +12,52 @@ export default function Home() {
         <nav className="space-x-6">
           <a href="#about" className="hover:text-blue-600 font-medium">About</a>
           <a href="#projects" className="hover:text-blue-600 font-medium">Projects</a>
+          <a href="#contact" className="hover:text-blue-600 font-medium">Education</a>
+          <a href="#contact" className="hover:text-blue-600 font-medium">Experiance</a>
           <a href="#contact" className="hover:text-blue-600 font-medium">Contact</a>
+          
+
         </nav>
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center text-center px-4 py-20">
-        {/* Profile Photo */}
-        <div className="w-40 h-40 relative mb-6">
-          <Image
-            src="/profile.jpg" // replace with your actual image path
-            alt="Tewodros Berhanu"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full border-4 border-blue-500"
-          />
-        </div>
+      {/*  */}
+      {/* Main Content */}
+<main className="flex flex-col items-center px-4 py-20">
+  {/* Profile and Intro Section */}
+  <div className="flex items-center justify-start w-full max-w-5xl gap-6">
+    {/* Profile Photo aligned left */}
+    <div className="w-60 h-60 relative mb-16">
+  <Image
+    src="/Images/Profile.png"
+    alt="Tewodros Berhanu"
+    width={240}
+    height={240}
+    className="rounded-full border-4 border-blue-500 object-cover mb-16"
+  />
+</div>
 
-        {/* Intro */}
-        <h2 className="text-3xl font-semibold mb-2">Hey, I'm Tewodros 👋</h2>
-        <p className="text-gray-600 max-w-md">
-          A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
-        </p>
 
-        {/* Buttons */}
-        <div className="mt-6 flex gap-4">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
-            QA
-          </button>
-          <button className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition">
-            DEVELOPER
-          </button>
-        </div>
-      </main>
+    {/* Intro Text */}
+    <div className="mb-6">
+      <h2 className="text-3xl font-semibold mb-2">Hey, I'm John Doe 👋</h2>
+      <p className="text-gray-600 max-w-md">
+        A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
+      </p>
+
+      {/* Buttons */}
+      <div className="mt-4 flex gap-4">
+        <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+          QA
+        </button>
+        <button className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition">
+          DEVELOPER
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
     </div>
   );
 }
