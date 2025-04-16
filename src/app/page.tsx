@@ -116,11 +116,13 @@
 
 import React from 'react';
 import Home from './components/Home'; // adjust the path based on where you saved Home.js
+import QA from "./components/QA"; 
 
 export default function Pages() {
   return (
     <div>
       <Home />
+      <QA />
     </div>
   );
 }
