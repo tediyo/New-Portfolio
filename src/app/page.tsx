@@ -115,14 +115,33 @@
 'use client';
 
 import React from 'react';
-import Home from './components/Home'; // adjust the path based on where you saved Home.js
-import QA from "./components/QA"; 
+import Home from './components/Home';
+import QA from "./components/QA";
+import Developer from "./components/Developer";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import { NavigationProvider } from './context/NavigationContext';
 
 export default function Pages() {
   return (
-    <div>
-      <Home />
-      <QA />
-    </div>
+    <NavigationProvider>
+      <div>
+        <section id="home">
+          <Home />
+        </section>
+        <section id="developer">
+          <Developer />
+        </section>
+        <section id="qa">
+          <QA />
+        </section>
+        <section id="experience">
+          <Experience />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </div>
+    </NavigationProvider>
   );
 }
