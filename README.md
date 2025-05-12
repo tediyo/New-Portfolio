@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio with Authentication
+
+A modern, interactive personal portfolio website built with Next.js, TypeScript, and MongoDB, featuring user authentication and a beautiful UI.
+
+## Features
+
+- 🔐 Secure Authentication System
+  - User registration and login
+  - JWT-based authentication
+  - Protected routes
+  - Secure password hashing
+  - MongoDB integration
+
+- 🎨 Modern UI/UX
+  - Responsive design
+  - Interactive components
+  - Beautiful animations
+  - Tailwind CSS styling
+
+- 📱 Portfolio Sections
+  - Home
+  - Developer Profile
+  - Projects Showcase
+  - Experience Timeline
+  - Education History
+  - Contact Form
+  - Q&A Section
+
+## Tech Stack
+
+- **Frontend:**
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - React Hooks
+  - Client-side routing
+
+- **Backend:**
+  - Next.js API Routes
+  - MongoDB
+  - Mongoose
+  - JWT Authentication
+  - bcryptjs
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or higher)
+- MongoDB (running locally on port 27017)
+- npm or yarn
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
+   ```bash
+   git clone <your-repository-url>
+   cd my-portfolio
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory with the following variables:
+   ```
+   MONGODB_URI=mongodb://localhost:27017/pp
+   JWT_SECRET=your-secret-key
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Visit `http://localhost:3000`
+
+## Project Structure
+
+```
+my-portfolio/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       ├── login/
+│   │   │       └── register/
+│   │   ├── login/
+│   │   ├── register/
+│   │   └── page.tsx
+│   ├── components/
+│   ├── lib/
+│   │   ├── auth.ts
+│   │   └── mongodb.ts
+│   └── models/
+│       └── User.ts
+├── public/
+├── .env.local
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Authentication Flow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Registration**
+   - User fills out registration form
+   - Password is hashed using bcrypt
+   - User data is stored in MongoDB
+   - Redirect to login page
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. **Login**
+   - User enters credentials
+   - Server validates credentials
+   - JWT token is generated
+   - Token stored in cookies and localStorage
+   - Redirect to home page
 
-## Learn More
+3. **Protected Routes**
+   - Middleware checks for valid token
+   - Unauthorized users redirected to login
+   - Authenticated users can access protected content
 
-To learn more about Next.js, take a look at the following resources:
+## API Endpoints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Project Link: [https://github.com/yourusername/my-portfolio](https://github.com/yourusername/my-portfolio)
