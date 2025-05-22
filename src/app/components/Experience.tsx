@@ -64,6 +64,29 @@ export default function Experience() {
       ]
     },
     {
+      type: "work",
+      title: "Software Developer",
+      company: "Digital Innovations",
+      period: "2020 - 2022",
+      description: "Full-stack development of web applications and RESTful APIs.",
+      achievements: [
+        "Developed and maintained 10+ client projects",
+        "Implemented CI/CD pipelines",
+        "Mentored junior developers"
+      ]
+    },{
+      type: "work",
+      title: "Software Developerrrrrrrrrrrrrrrrrrr",
+      company: "Digital Innovations",
+      period: "2020 - 2022",
+      description: "Full-stack development of web applications and RESTful APIs.",
+      achievements: [
+        "Developed and maintained 10+ client projects",
+        "Implemented CI/CD pipelines",
+        "Mentored junior developers"
+      ]
+    },
+    {
       type: "education",
       title: "Bachelor of Science in Computer Science",
       school: "State University",
