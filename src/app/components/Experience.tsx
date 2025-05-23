@@ -164,8 +164,8 @@ export default function Experience() {
                     {item.title}
                   </h3>
                   <CardContainer className="w-full">
-                    <CardBody className="bg-gray-900 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:border-white/[0.2] border-black/[0.1] w-[800px] h-[300px] rounded-xl p-8 border">
-                      <div className="grid grid-cols-2 gap-8">
+                    <CardBody className="bg-gray-900 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:border-white/[0.2] border-black/[0.1] w-full md:w-[600px] lg:w-[800px] h-auto min-h-[300px] rounded-xl p-8 border">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <CardItem
                             translateZ="50"

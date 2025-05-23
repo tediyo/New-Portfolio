@@ -10,6 +10,7 @@ import { SkillCard } from "./CardPattern";
 
 export default function Home() {
   const { scrollToSection } = useNavigation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Add motion values for 3D effect
   const x = useMotionValue(0);
@@ -203,14 +204,16 @@ export default function Home() {
         <motion.header 
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="w-full flex justify-between items-center px-6 py-4 shadow-md bg-white/80 backdrop-blur-md sticky top-0 z-50"
+          className="w-full flex justify-between items-center px-4 sm:px-6 py-4 shadow-md bg-white/80 backdrop-blur-md sticky top-0 z-50"
         >
           <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Tewodros</h1>
-          <nav className="space-x-6">
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-6">
             {[
               { name: 'About', id: 'home' },
-              { name: 'Projects', id: 'developer' },
-              { name: 'Education', id: 'experience' },
+              { name: 'Projects', id: 'projects' },
+              { name: 'Skills', id: 'skills' },
               { name: 'Experience', id: 'experience' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
@@ -225,20 +228,83 @@ export default function Home() {
               </motion.button>
             ))}
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </motion.header>
 
+        {/* Mobile Navigation Menu */}
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: isMobileMenuOpen ? 1 : 0,
+            height: isMobileMenuOpen ? 'auto' : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden overflow-hidden bg-white shadow-lg"
+        >
+          <div className="flex flex-col space-y-2 p-4">
+            {[
+              { name: 'About', id: 'home' },
+              { name: 'Projects', id: 'projects' },
+              { name: 'Skills', id: 'skills' },
+              { name: 'Experience', id: 'experience' },
+              { name: 'Contact', id: 'contact' }
+            ].map((item) => (
+              <motion.button
+                key={item.name}
+                onClick={() => {
+                  scrollToSection(item.id);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.name}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Main Content */}
-        <main className="flex flex-col items-center px-4 py-20">
+        <main className="flex flex-col items-center px-4 sm:px-6 py-12 sm:py-20">
           {/* Profile and Intro Section */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-12 mb-20"
+            className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-8 sm:gap-12 mb-12 sm:mb-20"
           >
             {/* Profile Photo with 3D effect */}
             <motion.div 
-              className="relative perspective-1000"
+              className="relative perspective-1000 w-[250px] sm:w-[300px]"
               style={{
                 perspective: 1000,
               }}
@@ -290,12 +356,12 @@ export default function Home() {
             </motion.div>
 
             {/* Intro Text */}
-            <div className="text-center md:text-left max-w-xl">
+            <div className="text-center md:text-left max-w-xl mt-8 md:mt-0">
               <motion.h2 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+                className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
               >
                 Hey, I'm Tewodros 👋
               </motion.h2>
@@ -303,7 +369,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-gray-600 text-lg mb-6"
+                className="text-gray-600 text-base sm:text-lg mb-6"
               >
                 A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
               </motion.p>
@@ -316,20 +382,20 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
               >
                 <motion.button 
-                  onClick={() => scrollToSection('qa')}
+                  onClick={() => scrollToSection('skills')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
                 >
-                  QA
+                  View Skills
                 </motion.button>
                 <motion.button 
-                  onClick={() => scrollToSection('developer')}
+                  onClick={() => scrollToSection('projects')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
                 >
-                  DEVELOPER
+                  View Projects
                 </motion.button>
               </motion.div>
 
@@ -356,15 +422,15 @@ export default function Home() {
 
           {/* About Cards Section */}
           <motion.div 
-            className="w-full max-w-6xl"
+            className="w-full max-w-6xl px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
               About Me
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {aboutCards.map((card, index) => (
                 <motion.div
                   key={card.title}
@@ -410,15 +476,15 @@ export default function Home() {
 
           {/* Skills Preview */}
           <motion.div 
-            className="mt-20 w-full max-w-6xl"
+            className="mt-16 sm:mt-20 w-full max-w-6xl px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
               Core Skills
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
               {[
                 { name: 'Frontend', icon: '🌐' },
                 { name: 'Backend', icon: '⚙️' },
