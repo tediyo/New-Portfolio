@@ -9,37 +9,43 @@ const qaSkills = [
     title: "Test Automation",
     description: "Proficient in Selenium, Cypress, and Playwright for web automation testing",
     link: "#qa",
-    icon: "/icons/automation.png"
+    icon: "/icons/automation.png",
+    hoverColor: "bg-blue-500/20 dark:bg-blue-500/30"
   },
   {
     title: "API Testing",
     description: "Expert in Postman, REST Assured, and API automation frameworks",
     link: "#qa",
-    icon: "/icons/api.png"
+    icon: "/icons/api.png",
+    hoverColor: "bg-green-500/20 dark:bg-green-500/30"
   },
   {
     title: "Performance Testing",
     description: "Experience with JMeter and LoadRunner for load and stress testing",
     link: "#qa",
-    icon: "/icons/performance.png"
+    icon: "/icons/performance.png",
+    hoverColor: "bg-purple-500/20 dark:bg-purple-500/30"
   },
   {
     title: "Mobile Testing",
     description: "Skilled in mobile app testing using Appium and mobile-specific tools",
     link: "#qa",
-    icon: "/icons/mobile.png"
+    icon: "/icons/mobile.png",
+    hoverColor: "bg-yellow-500/20 dark:bg-yellow-500/30"
   },
   {
     title: "Test Management",
     description: "Proficient in JIRA, TestRail, and other test management tools",
     link: "#qa",
-    icon: "/icons/management.png"
+    icon: "/icons/management.png",
+    hoverColor: "bg-red-500/20 dark:bg-red-500/30"
   },
   {
     title: "CI/CD Integration",
     description: "Experience integrating tests with Jenkins, GitHub Actions, and other CI tools",
     link: "#qa",
-    icon: "/icons/cicd.png"
+    icon: "/icons/cicd.png",
+    hoverColor: "bg-indigo-500/20 dark:bg-indigo-500/30"
   }
 ];
 
@@ -48,37 +54,43 @@ const devSkills = [
     title: "Frontend Development",
     description: "React, Next.js, TypeScript, Tailwind CSS, and modern JavaScript",
     link: "#developer",
-    icon: "/icons/frontend.png"
+    icon: "/icons/frontend.png",
+    hoverColor: "bg-cyan-500/20 dark:bg-cyan-500/30"
   },
   {
     title: "Backend Development",
     description: "Node.js, Express, Python, Django, and RESTful APIs",
     link: "#developer",
-    icon: "/icons/backend.png"
+    icon: "/icons/backend.png",
+    hoverColor: "bg-emerald-500/20 dark:bg-emerald-500/30"
   },
   {
     title: "Database Management",
     description: "MongoDB, PostgreSQL, MySQL, and Redis",
     link: "#developer",
-    icon: "/icons/database.png"
+    icon: "/icons/database.png",
+    hoverColor: "bg-violet-500/20 dark:bg-violet-500/30"
   },
   {
     title: "DevOps & Cloud",
     description: "AWS, Docker, Kubernetes, and CI/CD pipelines",
     link: "#developer",
-    icon: "/icons/devops.png"
+    icon: "/icons/devops.png",
+    hoverColor: "bg-orange-500/20 dark:bg-orange-500/30"
   },
   {
     title: "Version Control",
     description: "Git, GitHub, GitLab, and collaborative development",
     link: "#developer",
-    icon: "/icons/git.png"
+    icon: "/icons/git.png",
+    hoverColor: "bg-pink-500/20 dark:bg-pink-500/30"
   },
   {
     title: "Testing & Quality",
     description: "Jest, React Testing Library, and E2E testing",
     link: "#developer",
-    icon: "/icons/testing.png"
+    icon: "/icons/testing.png",
+    hoverColor: "bg-teal-500/20 dark:bg-teal-500/30"
   }
 ];
 

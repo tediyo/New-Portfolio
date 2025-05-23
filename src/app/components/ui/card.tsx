@@ -12,6 +12,7 @@ export const HoverEffect = ({
     description: string;
     link: string;
     icon: string;
+    hoverColor?: string;
   }[];
   className?: string;
 }) => {
@@ -35,7 +36,10 @@ export const HoverEffect = ({
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
+                className={cn(
+                  "absolute inset-0 h-full w-full block rounded-3xl",
+                  item.hoverColor || "bg-neutral-200 dark:bg-slate-800/[0.8]"
+                )}
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{
