@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion, useMotionValue, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { useState } from "react";
+import { EvervaultProvider, Card } from "@evervault/react";
+import { SkillCard } from "./CardPattern";
 
 export default function Home() {
   const { scrollToSection } = useNavigation();
@@ -44,33 +46,37 @@ export default function Home() {
       icon: "👨‍💻",
       description: "Full-stack developer with expertise in modern web technologies and a passion for creating efficient, scalable solutions.",
       color: "from-blue-500 to-blue-600",
-      gradient: "from-blue-500/20 to-blue-600/20"
+      gradient: "from-blue-500/20 to-blue-600/20",
+      cardNumber: "4242 4242 4242 4242"
     },
     {
       title: "Technical Skills",
       icon: "⚡",
       description: "Proficient in React, Node.js, TypeScript, and modern testing frameworks. Strong focus on clean code and best practices.",
       color: "from-purple-500 to-purple-600",
-      gradient: "from-purple-500/20 to-purple-600/20"
+      gradient: "from-purple-500/20 to-purple-600/20",
+      cardNumber: "5555 5555 5555 5555"
     },
     {
       title: "QA Expertise",
       icon: "🔍",
       description: "Experienced in automated testing, quality assurance, and ensuring robust software delivery through comprehensive testing strategies.",
       color: "from-green-500 to-green-600",
-      gradient: "from-green-500/20 to-green-600/20"
+      gradient: "from-green-500/20 to-green-600/20",
+      cardNumber: "3782 8224 6310 0055"
     },
     {
       title: "Soft Skills",
       icon: "🤝",
       description: "Excellent communication, problem-solving abilities, and a collaborative approach to team projects.",
       color: "from-orange-500 to-orange-600",
-      gradient: "from-orange-500/20 to-orange-600/20"
+      gradient: "from-orange-500/20 to-orange-600/20",
+      cardNumber: "6011 6011 6011 6011"
     }
   ];
 
   // Card hover effect
-  const CardHoverEffect = ({ children, color, gradient }: { children: React.ReactNode, color: string, gradient: string }) => {
+  const CardHoverEffect = ({ children, color, gradient, cardNumber }: { children: React.ReactNode, color: string, gradient: string, cardNumber: string }) => {
     const [isHovered, setIsHovered] = useState(false);
     const cardX = useMotionValue(0);
     const cardY = useMotionValue(0);
@@ -150,6 +156,34 @@ export default function Home() {
             >
               {children}
             </motion.div>
+
+            {/* Evervault Card */}
+            <motion.div
+              animate={{
+                opacity: isHovered ? 1 : 0,
+                y: isHovered ? 0 : 20,
+              }}
+              transition={{ duration: 0.3 }}
+              className="mt-6"
+            >
+              <Card
+                number={cardNumber}
+                expiry="12/25"
+                cvc="123"
+                theme={{
+                  background: "transparent",
+                  textColor: "#1F2937",
+                  fontFamily: "system-ui",
+                  fontSize: "16px",
+                  cardNumberColor: "#1F2937",
+                  cardExpiryColor: "#1F2937",
+                  cardCvcColor: "#1F2937",
+                  cardBackground: "rgba(255, 255, 255, 0.1)",
+                  cardBorder: "1px solid rgba(255, 255, 255, 0.2)",
+                  cardShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
@@ -157,247 +191,260 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 text-gray-900">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
-      </div>
+    <EvervaultProvider teamId="YOUR_TEAM_ID" appId="YOUR_APP_ID">
+      <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 text-gray-900">
+        {/* Animated Background */}
+        <div className="fixed inset-0 -z-10">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+          <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
+        </div>
 
-      {/* Top Bar */}
-      <motion.header 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="w-full flex justify-between items-center px-6 py-4 shadow-md bg-white/80 backdrop-blur-md sticky top-0 z-50"
-      >
-        <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Tewodros</h1>
-        <nav className="space-x-6">
-          {[
-            { name: 'About', id: 'home' },
-            { name: 'Projects', id: 'developer' },
-            { name: 'Education', id: 'experience' },
-            { name: 'Experience', id: 'experience' },
-            { name: 'Contact', id: 'contact' }
-          ].map((item) => (
-            <motion.button
-              key={item.name}
-              onClick={() => scrollToSection(item.id)}
-              className="hover:text-blue-600 font-medium relative group"
-              whileHover={{ scale: 1.05 }}
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-            </motion.button>
-          ))}
-        </nav>
-      </motion.header>
-
-      {/* Main Content */}
-      <main className="flex flex-col items-center px-4 py-20">
-        {/* Profile and Intro Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-12 mb-20"
+        {/* Top Bar */}
+        <motion.header 
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className="w-full flex justify-between items-center px-6 py-4 shadow-md bg-white/80 backdrop-blur-md sticky top-0 z-50"
         >
-          {/* Profile Photo with 3D effect */}
+          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Tewodros</h1>
+          <nav className="space-x-6">
+            {[
+              { name: 'About', id: 'home' },
+              { name: 'Projects', id: 'developer' },
+              { name: 'Education', id: 'experience' },
+              { name: 'Experience', id: 'experience' },
+              { name: 'Contact', id: 'contact' }
+            ].map((item) => (
+              <motion.button
+                key={item.name}
+                onClick={() => scrollToSection(item.id)}
+                className="hover:text-blue-600 font-medium relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+              </motion.button>
+            ))}
+          </nav>
+        </motion.header>
+
+        {/* Main Content */}
+        <main className="flex flex-col items-center px-4 py-20">
+          {/* Profile and Intro Section */}
           <motion.div 
-            className="relative perspective-1000"
-            style={{
-              perspective: 1000,
-            }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-12 mb-20"
           >
-            <motion.div
+            {/* Profile Photo with 3D effect */}
+            <motion.div 
+              className="relative perspective-1000"
               style={{
-                rotateX: springRotateX,
-                rotateY: springRotateY,
-                transformStyle: "preserve-3d",
+                perspective: 1000,
               }}
-              className="relative"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
-              {/* Glowing border effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow blur-sm"></div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow"></div>
-              
-              {/* Profile image with 3D effect */}
               <motion.div
                 style={{
-                  transform: "translateZ(20px)",
+                  rotateX: springRotateX,
+                  rotateY: springRotateY,
+                  transformStyle: "preserve-3d",
                 }}
                 className="relative"
               >
-                <Image
-                  src="/Images/Profile.png"
-                  alt="Tewodros Berhanu"
-                  width={300}
-                  height={300}
-                  className="rounded-full border-4 border-white object-cover relative z-10"
+                {/* Glowing border effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow blur-sm"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow"></div>
+                
+                {/* Profile image with 3D effect */}
+                <motion.div
+                  style={{
+                    transform: "translateZ(20px)",
+                  }}
+                  className="relative"
+                >
+                  <Image
+                    src="/Images/Profile.png"
+                    alt="Tewodros Berhanu"
+                    width={300}
+                    height={300}
+                    className="rounded-full border-4 border-white object-cover relative z-10"
+                  />
+                </motion.div>
+
+                {/* Decorative elements */}
+                <motion.div
+                  style={{
+                    transform: "translateZ(10px)",
+                  }}
+                  className="absolute -inset-4 rounded-full border-2 border-blue-200/50"
+                />
+                <motion.div
+                  style={{
+                    transform: "translateZ(5px)",
+                  }}
+                  className="absolute -inset-8 rounded-full border border-blue-100/30"
                 />
               </motion.div>
-
-              {/* Decorative elements */}
-              <motion.div
-                style={{
-                  transform: "translateZ(10px)",
-                }}
-                className="absolute -inset-4 rounded-full border-2 border-blue-200/50"
-              />
-              <motion.div
-                style={{
-                  transform: "translateZ(5px)",
-                }}
-                className="absolute -inset-8 rounded-full border border-blue-100/30"
-              />
             </motion.div>
-          </motion.div>
 
-          {/* Intro Text */}
-          <div className="text-center md:text-left max-w-xl">
-            <motion.h2 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
-            >
-              Hey, I'm Tewodros 👋
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-gray-600 text-lg mb-6"
-            >
-              A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
-            </motion.p>
-
-            {/* Interactive Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <motion.button 
-                onClick={() => scrollToSection('qa')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+            {/* Intro Text */}
+            <div className="text-center md:text-left max-w-xl">
+              <motion.h2 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
               >
-                QA
-              </motion.button>
-              <motion.button 
-                onClick={() => scrollToSection('developer')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                Hey, I'm Tewodros 👋
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-gray-600 text-lg mb-6"
               >
-                DEVELOPER
-              </motion.button>
-            </motion.div>
+                A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
+              </motion.p>
 
-            {/* Social Links */}
-            <motion.div 
-              className="flex gap-4 mt-8 justify-center md:justify-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              {['GitHub', 'LinkedIn', 'Twitter'].map((social) => (
-                <motion.a
-                  key={social}
-                  href="#"
-                  whileHover={{ scale: 1.1 }}
-                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-100 transition-colors"
-                >
-                  <span className="text-gray-600 hover:text-blue-600">{social[0]}</span>
-                </motion.a>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* About Cards Section */}
-        <motion.div 
-          className="w-full max-w-6xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-            About Me
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {aboutCards.map((card, index) => (
-              <motion.div
-                key={card.title}
+              {/* Interactive Buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
+                transition={{ delay: 0.4 }}
               >
-                <CardHoverEffect color={card.color} gradient={card.gradient}>
-                  <div className="flex items-center gap-4 mb-4">
-                    <motion.span 
-                      className="text-4xl"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 5, -5, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                      }}
-                    >
-                      {card.icon}
-                    </motion.span>
-                    <h4 className="text-xl font-semibold">{card.title}</h4>
-                  </div>
-                  <motion.p 
-                    className="text-gray-600"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    {card.description}
-                  </motion.p>
-                </CardHoverEffect>
+                <motion.button 
+                  onClick={() => scrollToSection('qa')}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  QA
+                </motion.button>
+                <motion.button 
+                  onClick={() => scrollToSection('developer')}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  DEVELOPER
+                </motion.button>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
-        {/* Skills Preview */}
-        <motion.div 
-          className="mt-20 w-full max-w-6xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold text-center mb-8">Core Skills</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['Frontend', 'Backend', 'Testing', 'DevOps'].map((skill) => (
-              <motion.div
-                key={skill}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+              {/* Social Links */}
+              <motion.div 
+                className="flex gap-4 mt-8 justify-center md:justify-start"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
               >
-                <h4 className="font-semibold text-lg mb-2">{skill}</h4>
-                <div className="h-2 bg-gray-100 rounded-full">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: "80%" }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                    className="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"
-                  />
-                </div>
+                {['GitHub', 'LinkedIn', 'Twitter'].map((social) => (
+                  <motion.a
+                    key={social}
+                    href="#"
+                    whileHover={{ scale: 1.1 }}
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-100 transition-colors"
+                  >
+                    <span className="text-gray-600 hover:text-blue-600">{social[0]}</span>
+                  </motion.a>
+                ))}
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </main>
-    </div>
+            </div>
+          </motion.div>
+
+          {/* About Cards Section */}
+          <motion.div 
+            className="w-full max-w-6xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              About Me
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {aboutCards.map((card, index) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                >
+                  <CardHoverEffect 
+                    color={card.color} 
+                    gradient={card.gradient}
+                    cardNumber={card.cardNumber}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <motion.span 
+                        className="text-4xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
+                      >
+                        {card.icon}
+                      </motion.span>
+                      <h4 className="text-xl font-semibold">{card.title}</h4>
+                    </div>
+                    <motion.p 
+                      className="text-gray-600"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      {card.description}
+                    </motion.p>
+                  </CardHoverEffect>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Skills Preview */}
+          <motion.div 
+            className="mt-20 w-full max-w-6xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              Core Skills
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { name: 'Frontend', icon: '🌐' },
+                { name: 'Backend', icon: '⚙️' },
+                { name: 'Testing', icon: '🔍' },
+                { name: 'DevOps', icon: '🚀' }
+              ].map((skill) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="h-[300px]"
+                >
+                  <SkillCard
+                    text={skill.icon}
+                    className="w-full h-full"
+                  />
+                  <div className="mt-4 text-center">
+                    <h4 className="font-semibold text-lg">{skill.name}</h4>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </main>
+      </div>
+    </EvervaultProvider>
   );
 }

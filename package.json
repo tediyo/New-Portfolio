@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@evervault/react": "^2.18.0",
     "@radix-ui/react-slot": "^1.2.2",
     "@tabler/icons-react": "^3.33.0",
     "@types/js-cookie": "^3.0.6",
