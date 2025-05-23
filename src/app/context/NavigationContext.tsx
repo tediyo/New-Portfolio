@@ -23,7 +23,7 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'developer', 'qa', 'experience', 'contact'];
+      const sections = ['home', 'skills', 'projects', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
