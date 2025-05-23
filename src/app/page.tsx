@@ -116,8 +116,7 @@
 
 import React from 'react';
 import Home from './components/Home';
-import QA from "./components/QA";
-import Developer from "./components/Developer";
+import Skills from './components/Skills';
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import { NavigationProvider } from './context/NavigationContext';
@@ -129,11 +128,8 @@ export default function Pages() {
         <section id="home">
           <Home />
         </section>
-        <section id="developer">
-          <Developer />
-        </section>
-        <section id="qa">
-          <QA />
+        <section id="skills">
+          <Skills />
         </section>
         <section id="experience">
           <Experience />
