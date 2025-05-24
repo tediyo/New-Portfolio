@@ -351,7 +351,7 @@ export default function Home() {
                     {isProjectsMenuOpen && (
                       <div className="pl-4 space-y-1">
                         {item.submenu.map((subItem) => (
-                          <button
+                          <motion.button
                             key={subItem.name}
                             onClick={() => {
                               scrollToSection(subItem.id);
@@ -359,9 +359,11 @@ export default function Home() {
                               setIsMobileMenuOpen(false);
                             }}
                             className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                           >
                             {subItem.name}
-                          </button>
+                          </motion.button>
                         ))}
                       </div>
                     )}

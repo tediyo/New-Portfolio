@@ -16,14 +16,16 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(sectionId);
+      }, 100);
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['home', 'skills', 'projects', 'qa-projects', 'dev-projects', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
