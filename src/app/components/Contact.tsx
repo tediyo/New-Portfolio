@@ -146,8 +146,28 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-medium">Location</h3>
-                    <p className="text-gray-600">San Francisco, CA</p>
+                    <p className="text-gray-600">Addis Ababa, Ethiopia</p>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Map Section */}
+            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+              <h2 className="text-2xl font-semibold mb-6">Location</h2>
+              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.3719046000003!2d38.7467993!3d9.0321867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x162b1f9d4a0d3dc1%3A0x1f9450f9602a7cf3!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&markers=color:red%7Clabel:A%7C9.0321867,38.7467993"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-lg"
+                ></iframe>
+                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md text-sm font-medium text-gray-700">
+                  📍 Addis Ababa
                 </div>
               </div>
             </div>
