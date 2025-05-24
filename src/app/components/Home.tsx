@@ -11,6 +11,7 @@ import { SkillCard } from "./CardPattern";
 export default function Home() {
   const { scrollToSection } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false);
 
   // Add motion values for 3D effect
   const x = useMotionValue(0);
@@ -212,20 +213,64 @@ export default function Home() {
           <nav className="hidden md:flex space-x-6">
             {[
               { name: 'About', id: 'home' },
-              { name: 'Projects', id: 'projects' },
+              { 
+                name: 'Projects',
+                id: 'projects',
+                submenu: [
+                  { name: 'QA Projects', id: 'qa-projects' },
+                  { name: 'DEV Projects', id: 'dev-projects' }
+                ]
+              },
               { name: 'Skills', id: 'skills' },
               { name: 'Experience', id: 'experience' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
-              <motion.button
-                key={item.name}
-                onClick={() => scrollToSection(item.id)}
-                className="hover:text-blue-600 font-medium relative group"
-                whileHover={{ scale: 1.05 }}
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-              </motion.button>
+              <div key={item.name} className="relative group">
+                {item.submenu ? (
+                  <>
+                    <motion.button
+                      onClick={() => setIsProjectsMenuOpen(!isProjectsMenuOpen)}
+                      className="hover:text-blue-600 font-medium relative group flex items-center"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {item.name}
+                      <svg
+                        className={`w-4 h-4 ml-1 transition-transform ${isProjectsMenuOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </motion.button>
+                    {isProjectsMenuOpen && (
+                      <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                        {item.submenu.map((subItem) => (
+                          <button
+                            key={subItem.name}
+                            onClick={() => {
+                              scrollToSection(subItem.id);
+                              setIsProjectsMenuOpen(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-blue-50 hover:text-blue-600"
+                          >
+                            {subItem.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <motion.button
+                    onClick={() => scrollToSection(item.id)}
+                    className="hover:text-blue-600 font-medium relative group"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+                  </motion.button>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -272,23 +317,69 @@ export default function Home() {
           <div className="flex flex-col space-y-2 p-4">
             {[
               { name: 'About', id: 'home' },
-              { name: 'Projects', id: 'projects' },
+              { 
+                name: 'Projects',
+                id: 'projects',
+                submenu: [
+                  { name: 'QA Projects', id: 'qa-projects' },
+                  { name: 'DEV Projects', id: 'dev-projects' }
+                ]
+              },
               { name: 'Skills', id: 'skills' },
               { name: 'Experience', id: 'experience' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
-              <motion.button
-                key={item.name}
-                onClick={() => {
-                  scrollToSection(item.id);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {item.name}
-              </motion.button>
+              <div key={item.name}>
+                {item.submenu ? (
+                  <>
+                    <motion.button
+                      onClick={() => setIsProjectsMenuOpen(!isProjectsMenuOpen)}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium flex items-center justify-between"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {item.name}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isProjectsMenuOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </motion.button>
+                    {isProjectsMenuOpen && (
+                      <div className="pl-4 space-y-1">
+                        {item.submenu.map((subItem) => (
+                          <button
+                            key={subItem.name}
+                            onClick={() => {
+                              scrollToSection(subItem.id);
+                              setIsProjectsMenuOpen(false);
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
+                          >
+                            {subItem.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <motion.button
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {item.name}
+                  </motion.button>
+                )}
+              </div>
             ))}
           </div>
         </motion.div>
