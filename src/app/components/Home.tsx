@@ -192,6 +192,16 @@ export default function Home() {
     );
   };
 
+  const navigation = [
+    { name: "About", id: "about" },
+    { name: "Projects", id: "projects" },
+    { name: "Skills", id: "skills" },
+    { name: "Education", id: "education" },
+    { name: "Experience", id: "experience" },
+    { name: "Reviews", id: "reviews" },
+    { name: "Contact", id: "contact" }
+  ];
+
   return (
     <EvervaultProvider teamId="YOUR_TEAM_ID" appId="YOUR_APP_ID">
       <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 text-gray-900">
@@ -211,21 +221,7 @@ export default function Home() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
-            {[
-              { name: 'About', id: 'home' },
-              { 
-                name: 'Projects',
-                id: 'projects',
-                submenu: [
-                  { name: 'QA Projects', id: 'qa-projects' },
-                  { name: 'DEV Projects', id: 'dev-projects' }
-                ]
-              },
-              { name: 'Skills', id: 'skills' },
-              { name: 'Education', id: 'education' },
-              { name: 'Experience', id: 'experience' },
-              { name: 'Contact', id: 'contact' }
-            ].map((item) => (
+            {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 {item.submenu ? (
                   <>
@@ -316,21 +312,7 @@ export default function Home() {
           className="md:hidden overflow-hidden bg-white shadow-lg"
         >
           <div className="flex flex-col space-y-2 p-4">
-            {[
-              { name: 'About', id: 'home' },
-              { 
-                name: 'Projects',
-                id: 'projects',
-                submenu: [
-                  { name: 'QA Projects', id: 'qa-projects' },
-                  { name: 'DEV Projects', id: 'dev-projects' }
-                ]
-              },
-              { name: 'Skills', id: 'skills' },
-              { name: 'Education', id: 'education' },
-              { name: 'Experience', id: 'experience' },
-              { name: 'Contact', id: 'contact' }
-            ].map((item) => (
+            {navigation.map((item) => (
               <div key={item.name}>
                 {item.submenu ? (
                   <>
