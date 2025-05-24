@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { HoverEffect } from "./ui/card";
+import { IconCloud } from "./ui/IconCloud";
 
 const qaSkills = [
   {
@@ -82,6 +83,59 @@ const devSkills = [
   }
 ];
 
+// Skill cloud images with tech stack icons
+const skillCloudImages = [
+  // Frontend Development
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  
+  // Backend Development
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  
+  // Database
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+  
+  // Testing & QA
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypress/cypress-original.svg",
+  "https://playwright.dev/img/playwright-logo.svg",
+  "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
+  "https://www.vectorlogo.zone/logos/appiumio/appiumio-icon.svg",
+  "https://www.vectorlogo.zone/logos/newman/newman-icon.svg",
+  "https://www.vectorlogo.zone/logos/saucelabs/saucelabs-icon.svg",
+  "https://www.vectorlogo.zone/logos/browserstack/browserstack-icon.svg",
+  
+  // DevOps & Cloud
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  
+  // Tools & Others
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg",
+  
+  // Additional Tech Stack
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg"
+];
+
 export default function Skills() {
   const { scrollToSection } = useNavigation();
 
@@ -99,6 +153,19 @@ export default function Skills() {
         <p className="text-gray-600 max-w-2xl mx-auto text-lg">
           Comprehensive expertise in both Quality Assurance and Software Development
         </p>
+      </motion.div>
+
+      {/* Icon Cloud Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-7xl mx-auto px-4 mb-16"
+      >
+        <div className="flex justify-center">
+          <div className="relative w-[400px] h-[400px] rounded-lg border bg-white/50 backdrop-blur-sm">
+            <IconCloud images={skillCloudImages} />
+          </div>
+        </div>
       </motion.div>
 
       {/* Navigation Tabs */}

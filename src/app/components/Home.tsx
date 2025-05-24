@@ -222,6 +222,7 @@ export default function Home() {
                 ]
               },
               { name: 'Skills', id: 'skills' },
+              { name: 'Education', id: 'education' },
               { name: 'Experience', id: 'experience' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
@@ -326,6 +327,7 @@ export default function Home() {
                 ]
               },
               { name: 'Skills', id: 'skills' },
+              { name: 'Education', id: 'education' },
               { name: 'Experience', id: 'experience' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (

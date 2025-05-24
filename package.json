@@ -21,7 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.509.0",
     "mongoose": "^8.14.2",
-    "motion": "^12.12.1",
+    "motion": "^12.12.2",
     "next": "13.5.11",
     "react": "^18",
     "react-dom": "^18",
