@@ -121,6 +121,7 @@ import Projects from './components/Projects';
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
+import Reviews from "./components/Reviews";
 import { NavigationProvider } from './context/NavigationContext';
 
 export default function Pages() {
@@ -141,6 +142,9 @@ export default function Pages() {
         </section>
         <section id="experience">
           <Experience />
+        </section>
+        <section id="reviews">
+          <Reviews />
         </section>
         <section id="contact">
           <Contact />
