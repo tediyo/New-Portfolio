@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
+import { PinContainer } from "./Pin";
 
 export default function Contact() {
   const { scrollToSection } = useNavigation();
@@ -151,19 +152,16 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Media Cards */}
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
-              <h2 className="text-2xl font-semibold mb-6">Connect with Me</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    className={`bg-gradient-to-r ${social.color} p-4 rounded-lg text-white hover:shadow-lg transition-all duration-300`}
-                  >
+            {/* Social Media Cards with 3D Pin Effect */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {socialLinks.map((social) => (
+                <PinContainer
+                  key={social.name}
+                  title={social.name}
+                  href={social.link}
+                  containerClassName="w-full h-full"
+                >
+                  <div className={`bg-gradient-to-r ${social.color} p-4 rounded-lg text-white`}>
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{social.icon}</span>
                       <div>
@@ -171,29 +169,9 @@ export default function Contact() {
                         <p className="text-sm text-white/80">{social.description}</p>
                       </div>
                     </div>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* Additional Social Card */}
-            <div className="bg-gradient-to-r from-purple-600 to-pink-500 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-white">
-              <h2 className="text-2xl font-semibold mb-4">Let's Connect!</h2>
-              <p className="mb-6">Follow me on social media to stay updated with my latest projects and insights.</p>
-              <div className="flex justify-center gap-4">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300"
-                  >
-                    <span className="text-xl">{social.icon}</span>
-                  </motion.a>
-                ))}
-              </div>
+                  </div>
+                </PinContainer>
+              ))}
             </div>
           </motion.div>
         </div>
