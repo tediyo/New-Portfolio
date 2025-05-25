@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { PinContainer } from "./Pin";
+import { Vortex } from "./Vortex";
 
 export default function Contact() {
   const { scrollToSection } = useNavigation();
@@ -39,13 +40,17 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 py-20">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
-      </div>
-
+    <Vortex
+      className="min-h-screen py-20"
+      containerClassName="bg-gradient-to-br from-gray-900 to-black"
+      particleCount={500}
+      baseHue={220}
+      baseSpeed={0.3}
+      rangeSpeed={0.5}
+      baseRadius={1}
+      rangeRadius={2}
+      backgroundColor="transparent"
+    >
       <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
         <motion.div
@@ -56,7 +61,7 @@ export default function Contact() {
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
             Get in Touch
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Let's connect and discuss how we can work together on your next project.
           </p>
         </motion.div>
@@ -66,40 +71,40 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+            className="bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-white/20"
           >
-            <h2 className="text-2xl font-semibold mb-6">Send a Message</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-white">Send a Message</h2>
             <form className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
                   Email
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="your.email@example.com"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
                   Message
                 </label>
                 <textarea
                   id="message"
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="Your message"
                 ></textarea>
               </div>
@@ -119,42 +124,42 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
-              <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
+            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-white/20">
+              <h2 className="text-2xl font-semibold mb-6 text-white">Contact Information</h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 text-xl">📧</span>
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-blue-400 text-xl">📧</span>
                   </div>
                   <div>
-                    <h3 className="font-medium">Email</h3>
-                    <p className="text-gray-600">your.email@example.com</p>
+                    <h3 className="font-medium text-white">Email</h3>
+                    <p className="text-gray-300">your.email@example.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 text-xl">📱</span>
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-blue-400 text-xl">📱</span>
                   </div>
                   <div>
-                    <h3 className="font-medium">Phone</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <h3 className="font-medium text-white">Phone</h3>
+                    <p className="text-gray-300">+1 (555) 123-4567</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 text-xl">📍</span>
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-blue-400 text-xl">📍</span>
                   </div>
                   <div>
-                    <h3 className="font-medium">Location</h3>
-                    <p className="text-gray-600">Addis Ababa, Ethiopia</p>
+                    <h3 className="font-medium text-white">Location</h3>
+                    <p className="text-gray-300">Addis Ababa, Ethiopia</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Map Section */}
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
-              <h2 className="text-2xl font-semibold mb-6">Location</h2>
+            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-white/20">
+              <h2 className="text-2xl font-semibold mb-6 text-white">Location</h2>
               <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.3719046000003!2d38.7467993!3d9.0321867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x162b1f9d4a0d3dc1%3A0x1f9450f9602a7cf3!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&markers=color:red%7Clabel:A%7C9.0321867,38.7467993"
@@ -166,7 +171,7 @@ export default function Contact() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="rounded-lg"
                 ></iframe>
-                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md text-sm font-medium text-gray-700">
+                <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-lg px-3 py-1 rounded-full shadow-md text-sm font-medium text-white border border-white/20">
                   📍 Addis Ababa
                 </div>
               </div>
@@ -181,7 +186,7 @@ export default function Contact() {
                   href={social.link}
                   containerClassName="w-full h-full"
                 >
-                  <div className={`bg-gradient-to-r ${social.color} p-4 rounded-lg text-white`}>
+                  <div className={`bg-gradient-to-r ${social.color} p-4 rounded-lg text-white backdrop-blur-lg`}>
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{social.icon}</span>
                       <div>
@@ -220,6 +225,6 @@ export default function Contact() {
           </motion.button>
         </motion.div>
       </div>
-    </div>
+    </Vortex>
   );
 } 
