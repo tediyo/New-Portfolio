@@ -4,9 +4,170 @@
 import Image from "next/image";
 import { motion, useMotionValue, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EvervaultProvider, Card } from "@evervault/react";
 import { SkillCard } from "./CardPattern";
+
+// Add this new component before the Home component
+const StatsCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
+  const [count, setCount] = useState(1);
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
+
+  useEffect(() => {
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      
+      setCount(Math.max(1, Math.floor(progress * end)));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [end, duration]);
+
+  const progress = (count / end) * circumference;
+
+  return (
+    <div className="relative inline-flex items-center justify-center">
+      <svg className="w-24 h-24 -rotate-90">
+        {/* Background circle */}
+        <circle
+          className="text-gray-200"
+          strokeWidth="8"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx="48"
+          cy="48"
+        />
+        {/* Progress circle */}
+        <circle
+          className="text-blue-600"
+          strokeWidth="8"
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference - progress}
+          strokeLinecap="round"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx="48"
+          cy="48"
+        />
+      </svg>
+      <motion.span
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="absolute text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+      >
+        {count}+
+      </motion.span>
+    </div>
+  );
+};
+
+// Add springConfig before the StatsCard3D component
+const springConfig = { damping: 15, stiffness: 150 };
+
+// Add this new component after the StatsCounter component and before the Home component
+const StatsCard3D = ({ children, color, gradient }: { children: React.ReactNode, color: string, gradient: string }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const cardX = useMotionValue(0);
+  const cardY = useMotionValue(0);
+
+  const cardRotateX = useTransform(cardY, [-100, 100], [15, -15]);
+  const cardRotateY = useTransform(cardX, [-100, 100], [-15, 15]);
+
+  const cardSpringRotateX = useSpring(cardRotateX, springConfig);
+  const cardSpringRotateY = useSpring(cardRotateY, springConfig);
+
+  const handleCardMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    cardX.set(event.clientX - centerX);
+    cardY.set(event.clientY - centerY);
+  };
+
+  const handleCardMouseLeave = () => {
+    cardX.set(0);
+    cardY.set(0);
+    setIsHovered(false);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleCardMouseMove}
+      onMouseLeave={handleCardMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      style={{
+        perspective: 1000,
+        transformStyle: "preserve-3d",
+      }}
+      className="relative group"
+    >
+      <motion.div
+        style={{
+          rotateX: cardSpringRotateX,
+          rotateY: cardSpringRotateY,
+          transformStyle: "preserve-3d",
+        }}
+        className="relative"
+      >
+        {/* Glow effect */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.3 }}
+          className={`absolute inset-0 bg-gradient-to-r ${color} opacity-0 blur-xl rounded-2xl`}
+        />
+        
+        {/* Card content */}
+        <motion.div
+          animate={{
+            scale: isHovered ? 1.02 : 1,
+            y: isHovered ? -5 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+        >
+          {/* Background gradient */}
+          <motion.div
+            animate={{
+              opacity: isHovered ? 0.1 : 0.05,
+            }}
+            transition={{ duration: 0.3 }}
+            className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
+          />
+          
+          {/* Content wrapper with 3D effect */}
+          <motion.div
+            style={{
+              transform: "translateZ(20px)",
+            }}
+          >
+            {children}
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 export default function Home() {
   const { scrollToSection } = useNavigation();
@@ -74,6 +235,26 @@ export default function Home() {
       color: "from-orange-500 to-orange-600",
       gradient: "from-orange-500/20 to-orange-600/20",
       cardNumber: "6011 6011 6011 6011"
+    }
+  ];
+
+  // Update the stats array to include colors and gradients
+  const stats = [
+    {
+      title: "Private Companies",
+      count: 15,
+      icon: "🏢",
+      description: "Successfully delivered projects",
+      color: "from-blue-500 to-blue-600",
+      gradient: "from-blue-500/20 to-blue-600/20"
+    },
+    {
+      title: "Happy Clients",
+      count: 10,
+      icon: "👥",
+      description: "Satisfied customers",
+      color: "from-purple-500 to-purple-600",
+      gradient: "from-purple-500/20 to-purple-600/20"
     }
   ];
 
@@ -546,6 +727,40 @@ export default function Home() {
                       {card.description}
                     </motion.p>
                   </CardHoverEffect>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Stats Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                >
+                  <StatsCard3D color={stat.color} gradient={stat.gradient}>
+                    <div className="flex flex-col items-center text-center">
+                      <motion.span 
+                        className="text-4xl mb-4"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
+                      >
+                        {stat.icon}
+                      </motion.span>
+                      <h3 className="text-lg font-semibold text-gray-700 mb-2">{stat.title}</h3>
+                      <StatsCounter end={stat.count} />
+                      <p className="text-gray-500 mt-2">{stat.description}</p>
+                    </div>
+                  </StatsCard3D>
                 </motion.div>
               ))}
             </div>
