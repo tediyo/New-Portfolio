@@ -127,26 +127,26 @@ import { NavigationProvider } from './context/NavigationContext';
 export default function Pages() {
   return (
     <NavigationProvider>
-      <div>
-        <section id="home">
+      <div className="min-h-screen bg-background text-foreground">
+        <section id="home" className="bg-background">
           <Home />
         </section>
-        <section id="skills">
+        <section id="skills" className="bg-background">
           <Skills />
         </section>
-        <section id="projects">
+        <section id="projects" className="bg-background">
           <Projects />
         </section>
-        <section id="education">
+        <section id="education" className="bg-background">
           <Education />
         </section>
-        <section id="experience">
+        <section id="experience" className="bg-background">
           <Experience />
         </section>
-        <section id="reviews">
+        <section id="reviews" className="bg-background">
           <Reviews />
         </section>
-        <section id="contact">
+        <section id="contact" className="bg-background">
           <Contact />
         </section>
       </div>
