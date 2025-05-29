@@ -58,17 +58,17 @@ export default function Projects() {
   const { scrollToSection } = useNavigation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 py-20">
+    <div className="min-h-screen bg-background py-20">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16"
       >
-        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+        <h1 className="text-5xl font-bold mb-6 text-primary">
           Featured Projects
         </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
           Showcasing my work in both Quality Assurance and Software Development
         </p>
       </motion.div>
@@ -80,7 +80,7 @@ export default function Projects() {
             onClick={() => scrollToSection('qa-projects')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+            className="bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
           >
             QA Projects
           </motion.button>
@@ -88,7 +88,7 @@ export default function Projects() {
             onClick={() => scrollToSection('dev-projects')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+            className="bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
           >
             Developer Projects
           </motion.button>
@@ -103,10 +103,10 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
               QA Projects
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Showcasing my expertise in test automation and quality assurance
             </p>
           </motion.div>
@@ -117,25 +117,27 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="transition-all duration-300 ease-in-out"
               >
                 <CardSpotlight className="h-full">
-                  <div className="bg-black rounded-2xl overflow-hidden h-full">
-                    <div className="relative h-48">
+                  <div className="bg-background rounded-2xl overflow-hidden h-full border border-border transition-transform duration-300 hover:scale-105">
+                    <div className="relative h-48 overflow-hidden">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 hover:scale-110"
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-400 mb-4">{project.description}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                      <p className="text-muted-foreground mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm"
+                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
                           >
                             {tech}
                           </span>
@@ -158,10 +160,10 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
               Developer Projects
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Showcasing my full-stack development skills and modern web applications
             </p>
           </motion.div>
@@ -172,25 +174,27 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="transition-all duration-300 ease-in-out"
               >
                 <CardSpotlight className="h-full">
-                  <div className="bg-black rounded-2xl overflow-hidden h-full">
-                    <div className="relative h-48">
+                  <div className="bg-background rounded-2xl overflow-hidden h-full border border-border transition-transform duration-300 hover:scale-105">
+                    <div className="relative h-48 overflow-hidden">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 hover:scale-110"
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-400 mb-4">{project.description}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                      <p className="text-muted-foreground mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm"
+                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
                           >
                             {tech}
                           </span>

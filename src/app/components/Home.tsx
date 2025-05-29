@@ -45,7 +45,7 @@ const StatsCounter = ({ end, duration = 2 }: { end: number, duration?: number })
       <svg className="w-24 h-24 -rotate-90">
         {/* Background circle */}
         <circle
-          className="text-gray-200"
+          className="text-muted"
           strokeWidth="8"
           stroke="currentColor"
           fill="transparent"
@@ -55,7 +55,7 @@ const StatsCounter = ({ end, duration = 2 }: { end: number, duration?: number })
         />
         {/* Progress circle */}
         <circle
-          className="text-blue-600"
+          className="text-primary"
           strokeWidth="8"
           strokeDasharray={circumference}
           strokeDashoffset={circumference - progress}
@@ -71,7 +71,7 @@ const StatsCounter = ({ end, duration = 2 }: { end: number, duration?: number })
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="absolute text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+        className="absolute text-2xl font-bold text-primary"
       >
         {count}+
       </motion.span>
@@ -144,7 +144,7 @@ const StatsCard3D = ({ children, color, gradient }: { children: React.ReactNode,
             y: isHovered ? -5 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+          className="bg-background p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden border border-border"
         >
           {/* Background gradient */}
           <motion.div
@@ -160,6 +160,7 @@ const StatsCard3D = ({ children, color, gradient }: { children: React.ReactNode,
             style={{
               transform: "translateZ(20px)",
             }}
+            className="text-foreground"
           >
             {children}
           </motion.div>
@@ -207,34 +208,30 @@ export default function Home() {
     {
       title: "Professional Summary",
       icon: "👨‍💻",
-      description: "Full-stack developer with expertise in modern web technologies and a passion for creating efficient, scalable solutions.",
+      description: "Experienced Full-Stack Developer with 3+ years of expertise in building scalable web applications. Specialized in React, Node.js, and TypeScript. Passionate about creating efficient, user-friendly solutions and maintaining high code quality standards. Proven track record in delivering projects on time while ensuring optimal performance and security.",
       color: "from-blue-500 to-blue-600",
-      gradient: "from-blue-500/20 to-blue-600/20",
-      cardNumber: "4242 4242 4242 4242"
+      gradient: "from-blue-500/20 to-blue-600/20"
     },
     {
       title: "Technical Skills",
       icon: "⚡",
-      description: "Proficient in React, Node.js, TypeScript, and modern testing frameworks. Strong focus on clean code and best practices.",
+      description: "Frontend: React, Next.js, TypeScript, Tailwind CSS, Redux\nBackend: Node.js, Express, MongoDB, PostgreSQL\nTesting: Jest, React Testing Library, Cypress\nDevOps: Docker, AWS, CI/CD, Git\nTools: VS Code, Postman, Jira, Figma",
       color: "from-purple-500 to-purple-600",
-      gradient: "from-purple-500/20 to-purple-600/20",
-      cardNumber: "5555 5555 5555 5555"
+      gradient: "from-purple-500/20 to-purple-600/20"
     },
     {
       title: "QA Expertise",
       icon: "🔍",
-      description: "Experienced in automated testing, quality assurance, and ensuring robust software delivery through comprehensive testing strategies.",
+      description: "• Comprehensive test planning and strategy development\n• Automated testing using Jest and Cypress\n• API testing with Postman and REST Assured\n• Performance testing with JMeter\n• Bug tracking and quality metrics analysis\n• Continuous Integration testing implementation",
       color: "from-green-500 to-green-600",
-      gradient: "from-green-500/20 to-green-600/20",
-      cardNumber: "3782 8224 6310 0055"
+      gradient: "from-green-500/20 to-green-600/20"
     },
     {
       title: "Soft Skills",
       icon: "🤝",
-      description: "Excellent communication, problem-solving abilities, and a collaborative approach to team projects.",
+      description: "• Strong problem-solving and analytical thinking\n• Excellent communication and team collaboration\n• Agile methodology and project management\n• Time management and deadline-oriented\n• Continuous learning and adaptability\n• Client relationship management",
       color: "from-orange-500 to-orange-600",
-      gradient: "from-orange-500/20 to-orange-600/20",
-      cardNumber: "6011 6011 6011 6011"
+      gradient: "from-orange-500/20 to-orange-600/20"
     }
   ];
 
@@ -245,7 +242,7 @@ export default function Home() {
       count: 15,
       icon: "🏢",
       description: "Successfully delivered projects",
-      color: "from-blue-500 to-blue-600",
+      color: "from-green-500 to-blue-600",
       gradient: "from-blue-500/20 to-blue-600/20"
     },
     {
@@ -253,13 +250,13 @@ export default function Home() {
       count: 10,
       icon: "👥",
       description: "Satisfied customers",
-      color: "from-purple-500 to-purple-600",
+      color: "from-yellow-500 to-red-600",
       gradient: "from-purple-500/20 to-purple-600/20"
     }
   ];
 
   // Card hover effect
-  const CardHoverEffect = ({ children, color, gradient, cardNumber }: { children: React.ReactNode, color: string, gradient: string, cardNumber: string }) => {
+  const CardHoverEffect = ({ children, color, gradient }: { children: React.ReactNode, color: string, gradient: string }) => {
     const [isHovered, setIsHovered] = useState(false);
     const cardX = useMotionValue(0);
     const cardY = useMotionValue(0);
@@ -320,7 +317,7 @@ export default function Home() {
               y: isHovered ? -5 : 0,
             }}
             transition={{ duration: 0.3 }}
-            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+            className="bg-background p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden border border-border"
           >
             {/* Background gradient */}
             <motion.div
@@ -336,36 +333,9 @@ export default function Home() {
               style={{
                 transform: "translateZ(20px)",
               }}
+              className="text-foreground"
             >
               {children}
-            </motion.div>
-
-            {/* Evervault Card */}
-            <motion.div
-              animate={{
-                opacity: isHovered ? 1 : 0,
-                y: isHovered ? 0 : 20,
-              }}
-              transition={{ duration: 0.3 }}
-              className="mt-6"
-            >
-              <Card
-                number={cardNumber}
-                expiry="12/25"
-                cvc="123"
-                theme={{
-                  background: "transparent",
-                  textColor: "#1F2937",
-                  fontFamily: "system-ui",
-                  fontSize: "16px",
-                  cardNumberColor: "#1F2937",
-                  cardExpiryColor: "#1F2937",
-                  cardCvcColor: "#1F2937",
-                  cardBackground: "rgba(255, 255, 255, 0.1)",
-                  cardBorder: "1px solid rgba(255, 255, 255, 0.2)",
-                  cardShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                }}
-              />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -385,69 +355,33 @@ export default function Home() {
 
   return (
     <EvervaultProvider teamId="YOUR_TEAM_ID" appId="YOUR_APP_ID">
-      <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 text-gray-900">
+      <div className="min-h-screen bg-background text-foreground">
         {/* Animated Background */}
         <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-          <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+          <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 blur-[100px]"></div>
         </div>
 
         {/* Top Bar */}
         <motion.header 
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="w-full flex justify-between items-center px-4 sm:px-6 py-4 shadow-md bg-white/80 backdrop-blur-md sticky top-0 z-50"
+          className="w-full flex justify-between items-center px-4 sm:px-6 py-4 shadow-md bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border"
         >
-          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Tewodros</h1>
+          <h1 className="text-xl font-bold text-primary">Tewodros</h1>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
-                {item.submenu ? (
-                  <>
-                    <motion.button
-                      onClick={() => setIsProjectsMenuOpen(!isProjectsMenuOpen)}
-                      className="hover:text-blue-600 font-medium relative group flex items-center"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {item.name}
-                      <svg
-                        className={`w-4 h-4 ml-1 transition-transform ${isProjectsMenuOpen ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </motion.button>
-                    {isProjectsMenuOpen && (
-                      <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
-                        {item.submenu.map((subItem) => (
-                          <button
-                            key={subItem.name}
-                            onClick={() => {
-                              scrollToSection(subItem.id);
-                              setIsProjectsMenuOpen(false);
-                            }}
-                            className="w-full text-left px-4 py-2 hover:bg-blue-50 hover:text-blue-600"
-                          >
-                            {subItem.name}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <motion.button
-                    onClick={() => scrollToSection(item.id)}
-                    className="hover:text-blue-600 font-medium relative group"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-                  </motion.button>
-                )}
+                <motion.button
+                  onClick={() => scrollToSection(item.id)}
+                  className="hover:text-primary font-medium relative group"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                </motion.button>
               </div>
             ))}
           </nav>
@@ -455,10 +389,10 @@ export default function Home() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden p-2 rounded-lg hover:bg-accent"
           >
             <svg
-              className="w-6 h-6"
+              className="w-6 h-6 text-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -490,63 +424,22 @@ export default function Home() {
             height: isMobileMenuOpen ? 'auto' : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden bg-white shadow-lg"
+          className="md:hidden overflow-hidden bg-background shadow-lg border-b border-border"
         >
           <div className="flex flex-col space-y-2 p-4">
             {navigation.map((item) => (
-              <div key={item.name}>
-                {item.submenu ? (
-                  <>
-                    <motion.button
-                      onClick={() => setIsProjectsMenuOpen(!isProjectsMenuOpen)}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium flex items-center justify-between"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {item.name}
-                      <svg
-                        className={`w-4 h-4 transition-transform ${isProjectsMenuOpen ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </motion.button>
-                    {isProjectsMenuOpen && (
-                      <div className="pl-4 space-y-1">
-                        {item.submenu.map((subItem) => (
-                          <motion.button
-                            key={subItem.name}
-                            onClick={() => {
-                              scrollToSection(subItem.id);
-                              setIsProjectsMenuOpen(false);
-                              setIsMobileMenuOpen(false);
-                            }}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            {subItem.name}
-                          </motion.button>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <motion.button
-                    onClick={() => {
-                      scrollToSection(item.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {item.name}
-                  </motion.button>
-                )}
-              </div>
+              <motion.button
+                key={item.name}
+                onClick={() => {
+                  scrollToSection(item.id);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 hover:bg-accent rounded-lg font-medium text-foreground"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.name}
+              </motion.button>
             ))}
           </div>
         </motion.div>
@@ -578,8 +471,8 @@ export default function Home() {
                 className="relative"
               >
                 {/* Glowing border effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow blur-sm"></div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 animate-spin-slow"></div>
+                <div className="absolute inset-0 rounded-full bg-primary/20 animate-spin-slow blur-sm"></div>
+                <div className="absolute inset-0 rounded-full bg-primary/20 animate-spin-slow"></div>
                 
                 {/* Profile image with 3D effect */}
                 <motion.div
@@ -593,7 +486,7 @@ export default function Home() {
                     alt="Tewodros Berhanu"
                     width={300}
                     height={300}
-                    className="rounded-full border-4 border-white object-cover relative z-10"
+                    className="rounded-full border-4 border-background object-cover relative z-10"
                   />
                 </motion.div>
 
@@ -602,13 +495,13 @@ export default function Home() {
                   style={{
                     transform: "translateZ(10px)",
                   }}
-                  className="absolute -inset-4 rounded-full border-2 border-blue-200/50"
+                  className="absolute -inset-4 rounded-full border-2 border-primary/50"
                 />
                 <motion.div
                   style={{
                     transform: "translateZ(5px)",
                   }}
-                  className="absolute -inset-8 rounded-full border border-blue-100/30"
+                  className="absolute -inset-8 rounded-full border border-primary/30"
                 />
               </motion.div>
             </motion.div>
@@ -619,7 +512,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+                className="text-4xl sm:text-5xl font-bold mb-4 text-primary"
               >
                 Hey, I'm Tewodros 👋
               </motion.h2>
@@ -627,7 +520,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-gray-600 text-base sm:text-lg mb-6"
+                className="text-muted-foreground text-base sm:text-lg mb-6"
               >
                 A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
               </motion.p>
@@ -643,7 +536,7 @@ export default function Home() {
                   onClick={() => scrollToSection('skills')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
                 >
                   View Skills
                 </motion.button>
@@ -651,7 +544,7 @@ export default function Home() {
                   onClick={() => scrollToSection('projects')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto bg-secondary text-secondary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
                 >
                   View Projects
                 </motion.button>
@@ -669,9 +562,9 @@ export default function Home() {
                     key={social}
                     href="#"
                     whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-blue-100 transition-colors"
+                    className="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-accent/80 transition-colors"
                   >
-                    <span className="text-gray-600 hover:text-blue-600">{social[0]}</span>
+                    <span className="text-accent-foreground">{social[0]}</span>
                   </motion.a>
                 ))}
               </motion.div>
@@ -685,7 +578,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
               About Me
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
@@ -699,7 +592,6 @@ export default function Home() {
                   <CardHoverEffect 
                     color={card.color} 
                     gradient={card.gradient}
-                    cardNumber={card.cardNumber}
                   >
                     <div className="flex items-center gap-4 mb-4">
                       <motion.span 
@@ -716,16 +608,16 @@ export default function Home() {
                       >
                         {card.icon}
                       </motion.span>
-                      <h4 className="text-xl font-semibold">{card.title}</h4>
+                      <h4 className="text-xl font-semibold text-foreground">{card.title}</h4>
                     </div>
-                    <motion.p 
-                      className="text-gray-600"
+                    <motion.div 
+                      className="text-muted-foreground whitespace-pre-line leading-relaxed"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
                       {card.description}
-                    </motion.p>
+                    </motion.div>
                   </CardHoverEffect>
                 </motion.div>
               ))}
@@ -756,9 +648,9 @@ export default function Home() {
                       >
                         {stat.icon}
                       </motion.span>
-                      <h3 className="text-lg font-semibold text-gray-700 mb-2">{stat.title}</h3>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{stat.title}</h3>
                       <StatsCounter end={stat.count} />
-                      <p className="text-gray-500 mt-2">{stat.description}</p>
+                      <p className="text-muted-foreground mt-2">{stat.description}</p>
                     </div>
                   </StatsCard3D>
                 </motion.div>
@@ -773,7 +665,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
               Core Skills
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
@@ -795,7 +687,7 @@ export default function Home() {
                     className="w-full h-full"
                   />
                   <div className="mt-4 text-center">
-                    <h4 className="font-semibold text-lg">{skill.name}</h4>
+                    <h4 className="font-semibold text-lg text-foreground">{skill.name}</h4>
                   </div>
                 </motion.div>
               ))}
