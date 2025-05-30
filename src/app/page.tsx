@@ -134,10 +134,10 @@ export default function Pages() {
         <section id="skills" className="bg-background">
           <Skills />
         </section>
-        <section id="projects" className="bg-background">
+        <section id="projects" className="bg-background pb-0">
           <Projects />
         </section>
-        <section id="education" className="bg-background">
+        <section id="education" className="bg-background pt-0">
           <Education />
         </section>
         <section id="experience" className="bg-background">

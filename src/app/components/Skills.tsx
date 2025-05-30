@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { HoverEffect } from "./ui/card";
 import { IconCloud } from "./ui/IconCloud";
-import { FlickeringGrid } from "./magicui/flickering-grid";
+//import { FlickeringGrid } from "./magicui/flickering-grid";
 
 const qaSkills = [
   {
@@ -166,7 +166,7 @@ export default function Skills() {
       >
         <div className="flex justify-center">
           <div className="relative w-[400px] h-[400px] rounded-lg border border-border bg-background/90 backdrop-blur-sm overflow-hidden">
-            <FlickeringGrid
+            {/* <FlickeringGrid
               className="absolute inset-0 z-0"
               squareSize={4}
               gridGap={6}
@@ -175,7 +175,7 @@ export default function Skills() {
               flickerChance={0.1}
               height={400}
               width={400}
-            />
+            /> */}
             <div className="relative z-10 w-full h-full">
               <IconCloud images={skillCloudImages} />
             </div>

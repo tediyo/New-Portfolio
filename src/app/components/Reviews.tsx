@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { ParticleBackground } from "./ParticleBackground";
+import { useState } from "react";
 
 const reviews = [
   {
@@ -32,11 +33,62 @@ const reviews = [
     rating: 5,
     comment: "Tewodros's ability to identify and fix potential issues before they become problems is remarkable. His testing strategies and automation skills significantly improved our development process. A true professional in every sense.",
     date: "November 2023"
+  },
+  {
+    name: "David Wilson",
+    role: "Senior Developer",
+    company: "CloudTech Solutions",
+    image: "https://randomuser.me/api/portraits/men/4.jpg",
+    rating: 5,
+    comment: "Tewodros's expertise in cloud architecture and microservices was instrumental in scaling our platform. His ability to write clean, maintainable code while implementing complex features is truly impressive. A great team player and mentor.",
+    date: "October 2023"
+  },
+  {
+    name: "Lisa Anderson",
+    role: "UX Director",
+    company: "Creative Minds",
+    image: "https://randomuser.me/api/portraits/women/5.jpg",
+    rating: 5,
+    comment: "Working with Tewodros on our design system implementation was a fantastic experience. His attention to detail and understanding of both design principles and technical implementation made the collaboration seamless and productive.",
+    date: "September 2023"
+  },
+  {
+    name: "James Martinez",
+    role: "Startup Founder",
+    company: "TechVentures",
+    image: "https://randomuser.me/api/portraits/men/6.jpg",
+    rating: 5,
+    comment: "Tewodros helped us build our MVP from the ground up. His technical expertise, combined with his business acumen, made him an invaluable partner in our journey. He consistently delivered beyond our expectations.",
+    date: "August 2023"
   }
 ];
 
 export default function Reviews() {
   const { scrollToSection } = useNavigation();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextReview = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex + 1 >= reviews.length ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevReview = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex - 1 < 0 ? reviews.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Get the three reviews to display (current, next, and previous)
+  const getVisibleReviews = () => {
+    const prevIndex = currentIndex - 1 < 0 ? reviews.length - 1 : currentIndex - 1;
+    const nextIndex = currentIndex + 1 >= reviews.length ? 0 : currentIndex + 1;
+    return [
+      reviews[prevIndex],
+      reviews[currentIndex],
+      reviews[nextIndex]
+    ];
+  };
 
   return (
     <div className="min-h-screen relative py-20 bg-gradient-to-br from-gray-900/50 to-black/50">
@@ -59,51 +111,83 @@ export default function Reviews() {
           </p>
         </motion.div>
 
-        {/* Reviews Grid */}
+        {/* Reviews Grid with Navigation */}
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <CardContainer key={index} className="w-full">
-                <CardBody className="bg-white/20 backdrop-blur-md relative border border-white/20 w-full h-full rounded-xl p-6 hover:bg-white/30 transition-all duration-300">
-                  <CardItem
-                    translateZ="50"
-                    className="text-xl font-bold text-white mb-2"
+          <div className="relative">
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevReview}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={nextReview}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Reviews Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <AnimatePresence mode="wait">
+                {getVisibleReviews().map((review, index) => (
+                  <motion.div
+                    key={review.name}
+                    initial={{ opacity: 0, x: index === 0 ? -100 : index === 2 ? 100 : 0 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: index === 0 ? -100 : index === 2 ? 100 : 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full"
                   >
-                    {review.name}
-                  </CardItem>
-                  <CardItem
-                    translateZ="60"
-                    className="text-gray-300 text-sm mb-4"
-                  >
-                    {review.role} at {review.company}
-                  </CardItem>
-                  <CardItem translateZ="100" className="w-full mt-4">
-                    <div className="flex items-center mb-4">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-xl">★</span>
-                      ))}
-                    </div>
-                    <p className="text-gray-200 italic">"{review.comment}"</p>
-                  </CardItem>
-                  <CardItem
-                    translateZ="50"
-                    className="text-gray-300 text-sm mt-4"
-                  >
-                    {review.date}
-                  </CardItem>
-                  <CardItem
-                    translateZ="40"
-                    className="absolute -top-4 -right-4 w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 shadow-lg"
-                  >
-                    <img
-                      src={review.image}
-                      alt={review.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            ))}
+                    <CardContainer className="w-full">
+                      <CardBody className="bg-transparent backdrop-blur-[0px] relative border-2 border-yellow-500/30 dark:border-yellow-500/30 w-full h-[400px] rounded-xl p-6 hover:bg-white/5 dark:hover:bg-black/5 transition-all duration-300">
+                        <CardItem
+                          translateZ="50"
+                          className="text-xl font-bold text-white mb-2"
+                        >
+                          {review.name}
+                        </CardItem>
+                        <CardItem
+                          translateZ="60"
+                          className="text-gray-300 text-sm mb-4"
+                        >
+                          {review.role} at {review.company}
+                        </CardItem>
+                        <CardItem translateZ="100" className="w-full mt-4">
+                          <div className="flex items-center mb-4">
+                            {[...Array(review.rating)].map((_, i) => (
+                              <span key={i} className="text-yellow-400 text-xl">★</span>
+                            ))}
+                          </div>
+                          <p className="text-gray-200 italic line-clamp-4">"{review.comment}"</p>
+                        </CardItem>
+                        <CardItem
+                          translateZ="50"
+                          className="text-gray-300 text-sm mt-4 absolute bottom-6"
+                        >
+                          {review.date}
+                        </CardItem>
+                        <CardItem
+                          translateZ="40"
+                          className="absolute -top-4 -right-4 w-16 h-16 rounded-full overflow-hidden border-2 border-yellow-500/30 shadow-lg"
+                        >
+                          <img
+                            src={review.image}
+                            alt={review.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </CardItem>
+                      </CardBody>
+                    </CardContainer>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
