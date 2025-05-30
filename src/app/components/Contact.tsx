@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigation } from "../context/NavigationContext";
 import { PinContainer } from "./Pin";
 import { Vortex } from "./Vortex";
+import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Contact() {
   const { scrollToSection } = useNavigation();
@@ -11,7 +12,7 @@ export default function Contact() {
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: "💼",
+      icon: <FaLinkedin className="text-yellow-500 dark:text-yellow-400" />,
       link: "https://linkedin.com/in/yourprofile",
       color: "from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20",
       hoverColor: "from-yellow-500/30 to-yellow-600/30 dark:from-yellow-500/30 dark:to-yellow-600/30",
@@ -19,7 +20,7 @@ export default function Contact() {
     },
     {
       name: "GitHub",
-      icon: "💻",
+      icon: <FaGithub className="text-yellow-500 dark:text-yellow-400" />,
       link: "https://github.com/yourusername",
       color: "from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20",
       hoverColor: "from-yellow-500/30 to-yellow-600/30 dark:from-yellow-500/30 dark:to-yellow-600/30",
@@ -27,7 +28,7 @@ export default function Contact() {
     },
     {
       name: "Twitter",
-      icon: "🐦",
+      icon: <FaTwitter className="text-yellow-500 dark:text-yellow-400" />,
       link: "https://twitter.com/yourhandle",
       color: "from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20",
       hoverColor: "from-yellow-500/30 to-yellow-600/30 dark:from-yellow-500/30 dark:to-yellow-600/30",
@@ -35,7 +36,7 @@ export default function Contact() {
     },
     {
       name: "Instagram",
-      icon: "📸",
+      icon: <FaInstagram className="text-yellow-500 dark:text-yellow-400" />,
       link: "https://instagram.com/yourprofile",
       color: "from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20",
       hoverColor: "from-yellow-500/30 to-yellow-600/30 dark:from-yellow-500/30 dark:to-yellow-600/30",
@@ -180,30 +181,40 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* Social Media Cards with 3D Pin Effect */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {socialLinks.map((social) => (
-                <PinContainer
-                  key={social.name}
-                  title={social.name}
-                  href={social.link}
-                  containerClassName="w-full h-full"
-                >
-                  <div className={`bg-gradient-to-r ${social.color} hover:${social.hoverColor} p-4 rounded-lg text-gray-800 dark:text-white backdrop-blur-lg border-2 border-yellow-500/30 dark:border-yellow-500/30 transition-all duration-300`}>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{social.icon}</span>
-                      <div>
-                        <h3 className="font-semibold">{social.name}</h3>
-                        <p className="text-sm text-gray-600 dark:text-white/80">{social.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </PinContainer>
-              ))}
-            </div>
           </motion.div>
         </div>
+
+        {/* Social Media Cards with 3D Pin Effect */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-12"
+        >
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white text-center">Connect With Me</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            {socialLinks.map((social) => (
+              <PinContainer
+                key={social.name}
+                title={social.name}
+                href={social.link}
+                containerClassName="w-full h-full"
+              >
+                <div className={`bg-transparent backdrop-blur-[2px] p-4 rounded-xl border border-yellow-500/20 dark:border-yellow-500/20 transition-all duration-300 hover:border-yellow-500/40 hover:shadow-lg group`}>
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {social.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 dark:text-white text-base mb-0.5">{social.name}</h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-300">{social.description}</p>
+                    </div>
+                    <div className="w-full h-0.5 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 group-hover:from-yellow-500/40 group-hover:to-yellow-600/40 transition-all duration-300"></div>
+                  </div>
+                </div>
+              </PinContainer>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Navigation Buttons */}
         <motion.div
