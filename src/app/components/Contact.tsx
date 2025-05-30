@@ -76,7 +76,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-transparent backdrop-blur-[2px] p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-yellow-500/20 dark:border-yellow-500/20 h-[600px] flex flex-col"
+            className="bg-transparent backdrop-blur-[0px] p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-yellow-500/20 dark:border-yellow-500/20 h-[600px] flex flex-col"
           >
             <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Send a Message</h2>
             <form className="space-y-6 flex-1 flex flex-col">
@@ -129,7 +129,7 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
-            <div className="bg-white/50 dark:bg-transparent backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-yellow-500/30 dark:border-yellow-500/30">
+            <div className="bg-white/50 dark:bg-transparent bbackdrop-blur-[0px] p-2 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-yellow-500/30 dark:border-yellow-500/30">
               <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Contact Information</h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -162,6 +162,34 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Social Media Cards with 3D Pin Effect */}
+            <div className="bg-transparent backdrop-blur-[0px] p-2 rounded-xl border border-yellow-500/20 dark:border-yellow-500/20">
+              <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Connect With Me</h2>
+              <div className="grid grid-cols-4 gap-0">
+                {socialLinks.map((social) => (
+                  <PinContainer
+                    key={social.name}
+                    title={social.name}
+                    href={social.link}
+                    containerClassName="w-full h-64"
+                  >
+                    <div className={`bg-transparent backdrop-blur-[0px] p-1.5 rounded-lg border border-yellow-500/20 dark:border-yellow-500/20 transition-all duration-300 hover:border-yellow-500/40 hover:shadow-lg group`}>
+                      <div className="flex flex-col items-center text-center gap-0.5">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          {social.icon}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-800 dark:text-white text-[10px] mb-0.5">{social.name}</h3>
+                          <p className="text-[8px] text-gray-600 dark:text-gray-300 line-clamp-1">{social.description}</p>
+                        </div>
+                        <div className="w-full h-0.5 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 group-hover:from-yellow-500/40 group-hover:to-yellow-600/40 transition-all duration-300"></div>
+                      </div>
+                    </div>
+                  </PinContainer>
+                ))}
+              </div>
+            </div>
+
             {/* Map Section */}
             <div className="bg-white/50 dark:bg-transparent backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-yellow-500/30 dark:border-yellow-500/30">
               <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Location</h2>
@@ -176,45 +204,13 @@ export default function Contact() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="rounded-lg"
                 ></iframe>
-                <div className="absolute top-4 right-4 bg-yellow-500/20 dark:bg-yellow-500/20 backdrop-blur-lg px-3 py-1 rounded-full shadow-md text-sm font-medium text-gray-800 dark:text-white border border-yellow-500/30 dark:border-yellow-500/30">
+                <div className="absolute top-4 right-4 bg-yellow-500/20 dark:bg-yellow-500/20 backdrop-blur-[0px] px-3 py-1 rounded-full shadow-md text-sm font-medium text-gray-800 dark:text-white border border-yellow-500/30 dark:border-yellow-500/30">
                   📍 Addis Ababa
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-
-        {/* Social Media Cards with 3D Pin Effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-12"
-        >
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white text-center">Connect With Me</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {socialLinks.map((social) => (
-              <PinContainer
-                key={social.name}
-                title={social.name}
-                href={social.link}
-                containerClassName="w-full h-full"
-              >
-                <div className={`bg-transparent backdrop-blur-[2px] p-4 rounded-xl border border-yellow-500/20 dark:border-yellow-500/20 transition-all duration-300 hover:border-yellow-500/40 hover:shadow-lg group`}>
-                  <div className="flex flex-col items-center text-center gap-2">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 dark:from-yellow-500/20 dark:to-yellow-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      {social.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 dark:text-white text-base mb-0.5">{social.name}</h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-300">{social.description}</p>
-                    </div>
-                    <div className="w-full h-0.5 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 group-hover:from-yellow-500/40 group-hover:to-yellow-600/40 transition-all duration-300"></div>
-                  </div>
-                </div>
-              </PinContainer>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Navigation Buttons */}
         <motion.div

@@ -117,7 +117,7 @@ export default function Reviews() {
             {/* Navigation Buttons */}
             <button
               onClick={prevReview}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md transition-all duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -125,7 +125,7 @@ export default function Reviews() {
             </button>
             <button
               onClick={nextReview}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md transition-all duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -145,7 +145,7 @@ export default function Reviews() {
                     className="w-full"
                   >
                     <CardContainer className="w-full">
-                      <CardBody className="bg-transparent backdrop-blur-md relative border-2 border-yellow-500/30 dark:border-yellow-500/30 w-full h-[400px] rounded-xl p-6 hover:bg-white/5 dark:hover:bg-black/5 transition-all duration-300">
+                      <CardBody className="bg-transparent backdrop-blur-[0px] relative border-2 border-yellow-500/30 dark:border-yellow-500/30 w-full h-[400px] rounded-xl p-6 hover:bg-white/5 dark:hover:bg-black/5 transition-all duration-300">
                         <CardItem
                           translateZ="50"
                           className="text-xl font-bold text-white mb-2"
