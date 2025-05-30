@@ -91,7 +91,7 @@ export default function Contact() {
   return (
     <Vortex
       className="min-h-screen py-20"
-      containerClassName="bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-900/50 dark:to-black/50"
+      containerClassName="bg-background"
       particleCount={500}
       baseHue={220}
       baseSpeed={0.3}
