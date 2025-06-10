@@ -580,6 +580,47 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* Stats Section */}
+          <motion.div 
+            className="w-full max-w-6xl px-4 sm:px-0 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                >
+                  <StatsCard3D color={stat.color} gradient={stat.gradient}>
+                    <div className="flex flex-col items-center text-center">
+                      <motion.span 
+                        className="text-4xl mb-4"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
+                      >
+                        {stat.icon}
+                      </motion.span>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{stat.title}</h3>
+                      <StatsCounter end={stat.count} />
+                      <p className="text-muted-foreground mt-2">{stat.description}</p>
+                    </div>
+                  </StatsCard3D>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* About Cards Section */}
           <motion.div 
             className="w-full max-w-6xl px-4 sm:px-0"
@@ -587,9 +628,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
+            {/* <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
               About Me
-            </h3>
+            </h3> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {aboutCards.map((card, index) => (
                 <motion.div
@@ -628,40 +669,6 @@ export default function Home() {
                       {card.description}
                     </motion.div>
                   </CardHoverEffect>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                >
-                  <StatsCard3D color={stat.color} gradient={stat.gradient}>
-                    <div className="flex flex-col items-center text-center">
-                      <motion.span 
-                        className="text-4xl mb-4"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 5, -5, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      >
-                        {stat.icon}
-                      </motion.span>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{stat.title}</h3>
-                      <StatsCounter end={stat.count} />
-                      <p className="text-muted-foreground mt-2">{stat.description}</p>
-                    </div>
-                  </StatsCard3D>
                 </motion.div>
               ))}
             </div>
