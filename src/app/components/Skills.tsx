@@ -196,8 +196,8 @@ export default function Skills() {
           </motion.button>
           <motion.button
             onClick={() => scrollToSection('developer')}
-            whileHover={{ scale: 10.05 }}
-            whileTap={{ scale: 10.95 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
           >
             Development Skills

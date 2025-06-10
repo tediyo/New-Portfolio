@@ -7,6 +7,8 @@ import { useNavigation } from "../context/NavigationContext";
 import { useState, useEffect } from "react";
 import { EvervaultProvider, Card } from "@evervault/react";
 import { SkillCard } from "./CardPattern";
+import { useTheme } from "next-themes";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 // Add this new component before the Home component
 const StatsCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
@@ -208,21 +210,21 @@ export default function Home() {
     {
       title: "Professional Summary",
       icon: "👨‍💻",
-      description: "Experienced Full-Stack Developer with 3+ years of expertise in building scalable web applications. Specialized in React, Node.js, and TypeScript. Passionate about creating efficient, user-friendly solutions and maintaining high code quality standards. Proven track record in delivering projects on time while ensuring optimal performance and security.",
+      description: "Skilled Software Engineer with 6+ years of experience in both frontend development and QA testing, delivering reliable and scalable solutions across fintech, e-commerce, ERP, and ride-hailing sectors. Proficient in modern web technologies and testing tools, with a strong focus on code quality, performance, and user experience. Adept at bridging the gap between development and QA to ensure smooth, high-impact product delivery.",
       color: "from-blue-500 to-blue-600",
       gradient: "from-blue-500/20 to-blue-600/20"
     },
     {
       title: "Technical Skills",
       icon: "⚡",
-      description: "Frontend: React, Next.js, TypeScript, Tailwind CSS, Redux\nBackend: Node.js, Express, MongoDB, PostgreSQL\nTesting: Jest, React Testing Library, Cypress\nDevOps: Docker, AWS, CI/CD, Git\nTools: VS Code, Postman, Jira, Figma",
+      description: <><span className="font-bold text-yellow-400">Languages</span>: Java, JavaScript, TypeScript, CSS3, Sass \n Frameworks & Libraries: React.js, Vue.js, Next.js, React Native, Tailwind CSS, Bootstrap\nDatabases: MySQL, PostgreSQL, MongoDB (basic knowledge)/nVersion Control: Git, GitHub, GitLab\nCloud Platforms: AWS (S3, EC2, Amplify), local cloud services\n CI/CD & Deployment: Vercel, Netlify\n Tools: VS Code, Figma, Postman, Git Bash, Chrome DevTools, Android Studio</>,
       color: "from-purple-500 to-purple-600",
       gradient: "from-purple-500/20 to-purple-600/20"
     },
     {
       title: "QA Expertise",
       icon: "🔍",
-      description: "• Comprehensive test planning and strategy development\n• Automated testing using Jest and Cypress\n• API testing with Postman and REST Assured\n• Performance testing with JMeter\n• Bug tracking and quality metrics analysis\n• Continuous Integration testing implementation",
+      description: "• Testing Types: Functional Testing, UI/UX Testing, Performance Testing, Regression Testing, API TestingAutomation Tools: Selenium, Appium, Playwright, Postman, Newman, JMeter Test Management & Reporting: Jira, TestRail, Bugzilla Cross-Browser & Device Testing: BrowserStack, Sauce Labs, Manual Testing on Multiple DevicesAPI Testing: Postman, Newman",
       color: "from-green-500 to-green-600",
       gradient: "from-green-500/20 to-green-600/20"
     },
@@ -358,7 +360,6 @@ export default function Home() {
       <div className="min-h-screen bg-background text-foreground">
         {/* Animated Background */}
         <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
           <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 blur-[100px]"></div>
         </div>
 
@@ -371,7 +372,7 @@ export default function Home() {
           <h1 className="text-xl font-bold text-primary">Tewodros</h1>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <motion.button
@@ -384,6 +385,7 @@ export default function Home() {
                 </motion.button>
               </div>
             ))}
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -514,7 +516,7 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="text-4xl sm:text-5xl font-bold mb-4 text-primary"
               >
-                Hey, I'm Tewodros 👋
+                 <span className="text-yellow-400">Tewodros Berhanu</span> 👋
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, x: -20 }}
@@ -522,7 +524,8 @@ export default function Home() {
                 transition={{ delay: 0.3 }}
                 className="text-muted-foreground text-base sm:text-lg mb-6"
               >
-                A passionate Software Developer & QA Enthusiast. I love building clean interfaces and testing them to perfection.
+                <span className="font-bold text-yellow-400">Software Developer | Software QA Tester</span>.<br />
+                I love building clean interfaces and testing them to perfection.
               </motion.p>
 
               {/* Interactive Buttons */}
@@ -540,18 +543,24 @@ export default function Home() {
                 >
                   View Skills
                 </motion.button>
-                <motion.button 
-                  onClick={() => scrollToSection('projects')}
+                <motion.a
+                  href="/resume.pdf"
+                  download
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-secondary text-secondary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto bg-secondary text-secondary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  View Projects
-                </motion.button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download Resume
+                </motion.a>
               </motion.div>
 
               {/* Social Links */}
-              <motion.div 
+              {/* <motion.div 
                 className="flex gap-4 mt-8 justify-center md:justify-start"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -567,7 +576,7 @@ export default function Home() {
                     <span className="text-accent-foreground">{social[0]}</span>
                   </motion.a>
                 ))}
-              </motion.div>
+              </motion.div> */}
             </div>
           </motion.div>
 
@@ -665,7 +674,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
+            {/* <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-primary">
               Core Skills
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
@@ -691,7 +700,7 @@ export default function Home() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
           </motion.div>
         </main>
       </div>
