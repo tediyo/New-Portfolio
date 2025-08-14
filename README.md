@@ -32,8 +32,7 @@ A modern, interactive personal portfolio website built with Next.js, TypeScript,
   - Next.js 14
   - TypeScript
   - Tailwind CSS
-  - React Hooks
-  - Client-side routing
+ 
 
 
 
