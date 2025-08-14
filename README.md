@@ -1,10 +1,3 @@
-# Personal Portfolio with Authentication
-
-A modern, interactive personal portfolio website built with Next.js, TypeScript, and MongoDB, featuring user authentication and a beautiful UI.
-
-## Features
-
-
 
 
 
