@@ -49,18 +49,7 @@ Before you begin, ensure you have the following installed:
 - MongoDB (running locally on port 27017)
 - npm or yarn
 
-## Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd my-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
 
 
 
