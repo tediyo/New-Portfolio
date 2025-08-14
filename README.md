@@ -35,12 +35,7 @@ A modern, interactive personal portfolio website built with Next.js, TypeScript,
   - React Hooks
   - Client-side routing
 
-- **Backend:**
-  - Next.js API Routes
-  - MongoDB
-  - Mongoose
-  - JWT Authentication
-  - bcryptjs
+
 
 ## Prerequisites
 
