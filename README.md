@@ -62,13 +62,6 @@ Before you begin, ensure you have the following installed:
    npm install
    ```
 
-3. **Set up environment variables**
-   Create a `.env.local` file in the root directory with the following variables:
-   ```
-   MONGODB_URI=mongodb://localhost:27017/pp
-   JWT_SECRET=your-secret-key
-   ```
-
 
 
 
