@@ -49,33 +49,10 @@ Before you begin, ensure you have the following installed:
 - MongoDB (running locally on port 27017)
 - npm or yarn
 
-## Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd my-portfolio
-   ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
 
-3. **Set up environment variables**
-   Create a `.env.local` file in the root directory with the following variables:
-   ```
-   MONGODB_URI=mongodb://localhost:27017/pp
-   JWT_SECRET=your-secret-key
-   ```
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser**
-   Visit `http://localhost:3000`
 
 ## Project Structure
 

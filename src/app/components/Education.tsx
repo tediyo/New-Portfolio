@@ -114,7 +114,7 @@ export default function Education() {
                   style={{ minWidth: '100%' }}
                 >
                   <CardContainer className="w-full max-w-2xl mx-auto">
-                    <CardBody className="bg-transparent backdrop-blur-[0px] relative group/card dark:hover:shadow-2xl dark:hover:shadow-yellow-500/[0.1] dark:bg-black/40 border-yellow-500/20 w-full h-full rounded-xl p-6 border">
+                    <CardBody className="bg-transparent backdrop-blur-[0px] relative group/card dark:hover:shadow-2xl dark:hover:shadow-yellow-500/[0.1] dark:bg-black/40 w-full h-full rounded-xl p-6">
                       <div className="flex flex-col lg:flex-row gap-6">
                         {/* Education Info */}
                         <div className="flex-1">
@@ -170,7 +170,7 @@ export default function Education() {
                           translateZ="50"
                           className="relative w-full lg:w-64 aspect-[3/4] rounded-xl overflow-hidden group"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 rounded-xl backdrop-blur-sm border border-yellow-500/20 transform transition-all duration-500 group-hover:scale-105"></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 rounded-xl backdrop-blur-sm transform transition-all duration-500 group-hover:scale-105"></div>
                           <div className="relative h-full w-full rounded-xl overflow-hidden">
                             <Image
                               src={edu.certificate}

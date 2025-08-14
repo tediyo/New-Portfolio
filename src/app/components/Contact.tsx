@@ -91,7 +91,7 @@ export default function Contact() {
   return (
     <Vortex
       className="min-h-screen py-20"
-      containerClassName="bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-900/50 dark:to-black/50"
+      containerClassName="bg-background"
       particleCount={500}
       baseHue={220}
       baseSpeed={0.3}
@@ -223,7 +223,7 @@ export default function Contact() {
             </div>
 
             {/* Social Media Cards with 3D Pin Effect */}
-            <div className="bg-transparent backdrop-blur-[0px] p-2 rounded-xl border border-yellow-500/20 dark:border-yellow-500/20">
+            <div className="bg-transparent backdrop-blur-[0px] p-3 rounded-xl border border-yellow-500/20 dark:border-yellow-500/20">
               <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Connect With Me</h2>
               <div className="grid grid-cols-4 gap-0">
                 {socialLinks.map((social) => (
@@ -251,9 +251,9 @@ export default function Contact() {
             </div>
 
             {/* Map Section */}
-            <div className="bg-white/50 dark:bg-transparent backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-yellow-500/30 dark:border-yellow-500/30">
+            {/* <div className="bg-white/50 dark:bg-transparent backdrop-blur-lg p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-yellow-500/30 dark:border-yellow-500/30">
               <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Location</h2>
-              <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
+              {/* <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.3719046000003!2d38.7467993!3d9.0321867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x162b1f9d4a0d3dc1%3A0x1f9450f9602a7cf3!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&markers=color:red%7Clabel:A%7C9.0321867,38.7467993"
                   width="100%"
@@ -267,8 +267,8 @@ export default function Contact() {
                 <div className="absolute top-4 right-4 bg-yellow-500/20 dark:bg-yellow-500/20 backdrop-blur-[0px] px-3 py-1 rounded-full shadow-md text-sm font-medium text-gray-800 dark:text-white border border-yellow-500/30 dark:border-yellow-500/30">
                   📍 Addis Ababa
                 </div>
-              </div>
-            </div>
+              </div> *
+            </div> */}
           </motion.div>
         </div>
 

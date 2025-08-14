@@ -5,6 +5,7 @@ import { useNavigation } from "../context/NavigationContext";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { ParticleBackground } from "./ParticleBackground";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 const reviews = [
   {
@@ -66,6 +67,7 @@ const reviews = [
 export default function Reviews() {
   const { scrollToSection } = useNavigation();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { theme } = useTheme();
 
   const nextReview = () => {
     setCurrentIndex((prevIndex) => 
@@ -91,9 +93,11 @@ export default function Reviews() {
   };
 
   return (
-    <div className="min-h-screen relative py-20 bg-gradient-to-br from-gray-900/50 to-black/50">
-      {/* Particle Background */}
-      <ParticleBackground className="z-0" />
+    <div className="min-h-screen relative py-20 bg-background overflow-hidden">
+      {/* Particle Background Container */}
+      <div className="absolute inset-0">
+        <ParticleBackground className="w-full h-full" theme={theme as 'light' | 'dark'} />
+      </div>
 
       {/* Content */}
       <div className="relative z-10">
@@ -103,10 +107,10 @@ export default function Reviews() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent pointer-events-none select-none text-shadow-[0px_0px_10px_white]">
             Client Reviews
           </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto opacity-50 text-shadow-[0px_0px_10px_rgba(255,255,255,0.5)] pointer-events-none select-none">
             What my clients say about working with me
           </p>
         </motion.div>
@@ -117,7 +121,7 @@ export default function Reviews() {
             {/* Navigation Buttons */}
             <button
               onClick={prevReview}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 bg-gray-100/10 hover:bg-gray-100/20 dark:bg-white/10 dark:hover:bg-white/20 text-gray-800 dark:text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -125,7 +129,7 @@ export default function Reviews() {
             </button>
             <button
               onClick={nextReview}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 bg-gray-100/10 hover:bg-gray-100/20 dark:bg-white/10 dark:hover:bg-white/20 text-gray-800 dark:text-white p-3 rounded-full backdrop-blur-[0px] transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -133,7 +137,7 @@ export default function Reviews() {
             </button>
 
             {/* Reviews Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid bg-transparent backdrop-blur-[0px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence mode="wait">
                 {getVisibleReviews().map((review, index) => (
                   <motion.div
@@ -145,16 +149,16 @@ export default function Reviews() {
                     className="w-full"
                   >
                     <CardContainer className="w-full">
-                      <CardBody className="bg-transparent backdrop-blur-[0px] relative border-2 border-yellow-500/30 dark:border-yellow-500/30 w-full h-[400px] rounded-xl p-6 hover:bg-white/5 dark:hover:bg-black/5 transition-all duration-300">
+                      <CardBody className="bg-transparent backdrop-blur-[0px] relative border-2 border-yellow-500/30 dark:border-yellow-500/30 w-full h-[400px] rounded-xl p-6 hover:bg-gray-100/5 dark:hover:bg-black/5 transition-all duration-300">
                         <CardItem
                           translateZ="50"
-                          className="text-xl font-bold text-white mb-2"
+                          className="text-xl font-bold text-gray-800 dark:text-white mb-2"
                         >
                           {review.name}
                         </CardItem>
                         <CardItem
                           translateZ="60"
-                          className="text-gray-300 text-sm mb-4"
+                          className="text-gray-600 dark:text-gray-300 text-sm mb-4"
                         >
                           {review.role} at {review.company}
                         </CardItem>
@@ -164,11 +168,11 @@ export default function Reviews() {
                               <span key={i} className="text-yellow-400 text-xl">★</span>
                             ))}
                           </div>
-                          <p className="text-gray-200 italic line-clamp-4">"{review.comment}"</p>
+                          <p className="text-gray-700 dark:text-gray-200 italic line-clamp-4">"{review.comment}"</p>
                         </CardItem>
                         <CardItem
                           translateZ="50"
-                          className="text-gray-300 text-sm mt-4 absolute bottom-6"
+                          className="text-gray-600 dark:text-gray-300 text-sm mt-4 absolute bottom-6"
                         >
                           {review.date}
                         </CardItem>
