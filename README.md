@@ -69,13 +69,8 @@ Before you begin, ensure you have the following installed:
    JWT_SECRET=your-secret-key
    ```
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
 
-5. **Open your browser**
-   Visit `http://localhost:3000`
+
 
 ## Project Structure
 
