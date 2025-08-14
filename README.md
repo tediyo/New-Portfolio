@@ -3,14 +3,6 @@
 
 
 
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-- Node.js (v14 or higher)
-- MongoDB (running locally on port 27017)
-- npm or yarn
-
-
 
 
 
