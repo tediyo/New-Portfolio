@@ -17,22 +17,8 @@ A modern, interactive personal portfolio website built with Next.js, TypeScript,
   - Beautiful animations
   - Tailwind CSS styling
 
-- 📱 Portfolio Sections
-  - Home
-  - Developer Profile
-  - Projects Showcase
-  - Experience Timeline
-  - Education History
-  - Contact Form
-  - Q&A Section
 
-## Tech Stack
 
-- **Frontend:**
-  - Next.js 14
-  - TypeScript
-  - Tailwind CSS
- 
 
 
 
