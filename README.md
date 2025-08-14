@@ -4,13 +4,6 @@ A modern, interactive personal portfolio website built with Next.js, TypeScript,
 
 ## Features
 
-- 🔐 Secure Authentication System
-  - User registration and login
-  - JWT-based authentication
-  - Protected routes
-  - Secure password hashing
-  - MongoDB integration
-
 
 
 
