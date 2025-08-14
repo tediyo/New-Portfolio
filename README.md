@@ -11,11 +11,6 @@ A modern, interactive personal portfolio website built with Next.js, TypeScript,
   - Secure password hashing
   - MongoDB integration
 
-- 🎨 Modern UI/UX
-  - Responsive design
-  - Interactive components
-  - Beautiful animations
-  - Tailwind CSS styling
 
 
 
