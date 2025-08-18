@@ -28,6 +28,13 @@ const qaProjects = [
     image: "/projects/qa-mobile.png",
     technologies: ["Appium", "TestNG", "Java", "Android Studio"],
     link: "#"
+  },
+  {
+    title: "BINGETBIRR Mobile App Testing",
+    description: "Comprehensive testing strategy from API to functional testing, unit testing up to automated testing for BINGETBIRR mobile application",
+    image: "/projects/qa-bingetbirr.png",
+    technologies: ["API Testing", "Unit Testing", "Functional Testing", "Automated Testing", "Mobile Testing"],
+    link: "#"
   }
 ];
 
@@ -51,6 +58,13 @@ const devProjects = [
     description: "Interactive portfolio website with modern animations and responsive design",
     image: "/projects/dev-portfolio.png",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    link: "#"
+  },
+  {
+    title: "Eazy SuperAPP",
+    description: "Comprehensive super application integrating nine standalone services and applications into a unified platform",
+    image: "/projects/dev-eazy-superapp.png",
+    technologies: ["React Native", "Node.js", "Microservices", "API Integration", "Mobile Development"],
     link: "#"
   }
 ];
