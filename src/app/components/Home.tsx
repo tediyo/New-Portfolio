@@ -580,6 +580,103 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* Who Am I Card Section */}
+          <motion.div 
+            className="w-full max-w-6xl px-4 sm:px-0 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <motion.div
+              className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8 sm:p-12"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 opacity-50"></div>
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <motion.div 
+                  className="flex items-center justify-center mb-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                    👨‍💻
+                  </div>
+                </motion.div>
+                
+                <motion.h3 
+                  className="text-2xl sm:text-3xl font-bold text-center mb-6 text-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  Who Am I?
+                </motion.h3>
+                
+                <motion.div 
+                  className="text-center max-w-4xl mx-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                >
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    I am <span className="font-bold text-primary">Tewodros Berhanu</span>, a passionate and versatile professional who bridges the gap between development and quality assurance. With expertise in both software development and comprehensive testing methodologies, I bring a unique perspective to every project.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.0 }}
+                    >
+                      <StatsCard3D color="from-blue-500 to-blue-600" gradient="from-blue-500/20 to-blue-600/20">
+                        <div className="text-center p-4">
+                          <div className="text-3xl mb-2">🚀</div>
+                          <h4 className="font-semibold text-primary mb-2">Developer</h4>
+                          <p className="text-sm text-muted-foreground">Building robust, scalable applications with modern technologies</p>
+                        </div>
+                      </StatsCard3D>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.1 }}
+                    >
+                      <StatsCard3D color="from-green-500 to-green-600" gradient="from-green-500/20 to-green-600/20">
+                        <div className="text-center p-4">
+                          <div className="text-3xl mb-2">🔍</div>
+                          <h4 className="font-semibold text-secondary mb-2">QA Engineer</h4>
+                          <p className="text-sm text-muted-foreground">Ensuring quality through comprehensive testing strategies</p>
+                        </div>
+                      </StatsCard3D>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2 }}
+                    >
+                      <StatsCard3D color="from-yellow-500 to-yellow-600" gradient="from-yellow-500/20 to-yellow-600/20">
+                        <div className="text-center p-4">
+                          <div className="text-3xl mb-2">💡</div>
+                          <h4 className="font-semibold text-yellow-600 mb-2">Problem Solver</h4>
+                          <p className="text-sm text-muted-foreground">Turning complex challenges into elegant solutions</p>
+                        </div>
+                      </StatsCard3D>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+
           {/* Stats Section */}
           <motion.div 
             className="w-full max-w-6xl px-4 sm:px-0 mb-12"
