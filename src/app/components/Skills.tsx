@@ -1,88 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useNavigation } from "../context/NavigationContext";
-import { HoverEffect } from "./ui/card";
+import { useState } from "react";
 import { IconCloud } from "./ui/IconCloud";
-//import { FlickeringGrid } from "./magicui/flickering-grid";
+import SkillModal from "./ui/SkillModal";
+import { 
+  TestTube, 
+  Globe, 
+  Gauge, 
+  Smartphone, 
+  ClipboardList, 
+  GitBranch,
+  Code,
+  Database,
+  Cloud,
+  GitCommit,
+  Bug
+} from "lucide-react";
 
-const qaSkills = [
+interface Skill {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  link?: string;
+  color?: string;
+  gradient?: string;
+}
+
+const qaSkills: Skill[] = [
   {
     title: "Test Automation",
     description: "Proficient in Selenium, Cypress, and Playwright for web automation testing",
     link: "#qa",
-    icon: "/icons/automation.png"
+    icon: <TestTube className="w-6 h-6" />
   },
   {
     title: "API Testing",
     description: "Expert in Postman, REST Assured, and API automation frameworks",
     link: "#qa",
-    icon: "/icons/api.png"
+    icon: <Globe className="w-6 h-6" />
   },
   {
     title: "Performance Testing",
     description: "Experience with JMeter and LoadRunner for load and stress testing",
     link: "#qa",
-    icon: "/icons/performance.png"
+    icon: <Gauge className="w-6 h-6" />
   },
   {
     title: "Mobile Testing",
     description: "Skilled in mobile app testing using Appium and mobile-specific tools",
     link: "#qa",
-    icon: "/icons/mobile.png"
+    icon: <Smartphone className="w-6 h-6" />
   },
   {
     title: "Test Management",
     description: "Proficient in JIRA, TestRail, and other test management tools",
     link: "#qa",
-    icon: "/icons/management.png"
+    icon: <ClipboardList className="w-6 h-6" />
   },
   {
     title: "CI/CD Integration",
     description: "Experience integrating tests with Jenkins, GitHub Actions, and other CI tools",
     link: "#qa",
-    icon: "/icons/cicd.png"
+    icon: <GitBranch className="w-6 h-6" />
   }
 ];
 
-const devSkills = [
+const devSkills: Skill[] = [
   {
     title: "Frontend Development",
     description: "React, Next.js, TypeScript, Tailwind CSS, and modern JavaScript",
     link: "#developer",
-    icon: "/icons/frontend.png",
+    icon: <Code className="w-6 h-6" />,
     color: "from-blue-500 to-blue-600",
-      gradient: "from-blue-500/20 to-blue-600/20"
+    gradient: "from-blue-500/20 to-blue-600/20"
   },
   {
     title: "Backend Development",
-    description: "Node.js, Express, Python, Django, and RESTful hhhhhhhhhhhhhhhhhhhhhh APIs",
+    description: "Node.js, Express, Python, Django, and RESTful APIs",
     link: "#developer",
-    icon: "/icons/backend.png"
+    icon: <Database className="w-6 h-6" />
   },
   {
     title: "Database Management",
     description: "MongoDB, PostgreSQL, MySQL, and Redis",
     link: "#developer",
-    icon: "/icons/database.png"
+    icon: <Database className="w-6 h-6" />
   },
   {
     title: "DevOps & Cloud",
     description: "AWS, Docker, Kubernetes, and CI/CD pipelines",
     link: "#developer",
-    icon: "/icons/devops.png"
+    icon: <Cloud className="w-6 h-6" />
   },
   {
     title: "Version Control",
     description: "Git, GitHub, GitLab, and collaborative development",
     link: "#developer",
-    icon: "/icons/git.png"
+    icon: <GitCommit className="w-6 h-6" />
   },
   {
     title: "Testing & Quality",
     description: "Jest, React Testing Library, and E2E testing",
     link: "#developer",
-    icon: "/icons/testing.png"
+    icon: <Bug className="w-6 h-6" />
   }
 ];
 
@@ -140,7 +161,15 @@ const skillCloudImages = [
 ];
 
 export default function Skills() {
-  const { scrollToSection } = useNavigation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openSkillsModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -153,9 +182,19 @@ export default function Skills() {
         <h1 className="text-5xl font-bold mb-6 text-primary">
           Professional Skills
         </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+        <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
           Comprehensive expertise in both Quality Assurance and Software Development
         </p>
+        
+        {/* Skills Button */}
+        <motion.button
+          onClick={openSkillsModal}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-primary text-primary-foreground px-12 py-4 rounded-full hover:shadow-lg transition-all duration-300 text-lg font-semibold"
+        >
+          View All Skills
+        </motion.button>
       </motion.div>
 
       {/* Icon Cloud Section */}
@@ -166,16 +205,6 @@ export default function Skills() {
       >
         <div className="flex justify-center">
           <div className="relative w-[400px] h-[400px] rounded-lg border border-border bg-background/90 backdrop-blur-sm overflow-hidden">
-            {/* <FlickeringGrid
-              className="absolute inset-0 z-0"
-              squareSize={4}
-              gridGap={6}
-              color="hsl(var(--primary))"
-              maxOpacity={0.4}
-              flickerChance={0.1}
-              height={400}
-              width={400}
-            /> */}
             <div className="relative z-10 w-full h-full">
               <IconCloud images={skillCloudImages} />
             </div>
@@ -183,87 +212,13 @@ export default function Skills() {
         </div>
       </motion.div>
 
-      {/* Navigation Tabs */}
-      <div className="max-w-1xl mx-auto px-4 mb-8">
-        <div className="flex justify-center gap-4">
-          <motion.button
-            onClick={() => scrollToSection('qa')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
-          >
-            QA Skills
-          </motion.button>
-          <motion.button
-            onClick={() => scrollToSection('developer')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary text-primary-foreground px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
-          >
-            Development Skills
-          </motion.button>
-        </div>
-      </div>
-
-      {/* QA Skills Section */}
-      <motion.div
-        id="qa"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-6xl mx-auto px-4 mb-16"
-      >
-        <h2 className="text-3xl font-bold mb-8 text-center text-foreground">QA Expertise</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {qaSkills.map((skill, index) => (
-            <motion.div
-              key={skill.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="w-full max-w-xl mx-auto"
-            >
-              <HoverEffect
-                items={[{
-                  title: skill.title,
-                  description: skill.description,
-                  link: skill.link,
-                  icon: skill.icon
-                }]}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Development Skills Section */}
-      <motion.div
-        id="developer"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-6xl mx-auto px-4 mb-16"
-      >
-        <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Development Skills</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {devSkills.map((skill, index) => (
-            <motion.div
-              key={skill.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="w-full max-w-xl mx-auto"
-            >
-              <HoverEffect
-                items={[{
-                  title: skill.title,
-                  description: skill.description,
-                  link: skill.link,
-                  icon: skill.icon
-                }]}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      {/* Skills Modal */}
+      <SkillModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        qaSkills={qaSkills}
+        devSkills={devSkills}
+      />
     </div>
   );
 } 
